@@ -16,6 +16,6 @@ namespace NinjaManager
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Gold { get; set; }
+        public int Gold { get; set; }
     }
 }

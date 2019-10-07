@@ -53,6 +53,14 @@ namespace NinjaManager.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
+
+        public ManageNinjasViewModel ManageNinjas
+        {
+            get
+            {
+                return new ManageNinjasViewModel(this.Main);
+            }
+        }
         
         public static void Cleanup()
         {
