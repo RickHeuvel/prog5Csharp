@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Ninja]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(50) NULL, 
+    [Gold] INT NULL DEFAULT 1000
+)
