@@ -54,11 +54,11 @@ namespace NinjaManager.ViewModel
             }
         }
 
-        public ManageNinjasViewModel ManageNinjas
+        public EditNinjaViewModel EditNinja
         {
             get
             {
-                return new ManageNinjasViewModel(this.Main);
+                return new EditNinjaViewModel(this.Main);
             }
         }
         

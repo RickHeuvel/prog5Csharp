@@ -10,11 +10,9 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class ManageNinjasViewModel : ViewModelBase
+    public class EditNinjaViewModel : ViewModelBase
     {
         private MainViewModel mainModel;
-
-        public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
 
         private NinjaViewModel _selectedNinja;
         public NinjaViewModel SelectedNinja
@@ -26,10 +24,10 @@ namespace NinjaManager.ViewModel
 
         //commands
         public ICommand EditNinjaCommand { get; set; }
-        public ManageNinjasViewModel(MainViewModel main)
+        public EditNinjaViewModel(MainViewModel main)
         {
             mainModel = main;
-            Ninjas = mainModel.Ninjas;
+            SelectedNinja = mainModel.SelectedNinja;
 
             EditNinjaCommand = new RelayCommand(EditNinja, CanEditNinja);
            
@@ -59,8 +57,7 @@ namespace NinjaManager.ViewModel
                     context.SaveChanges();
                 }
             }
-
-          //  mainModel.RaisePropertyChanged();
+            mainModel.CloseEditNinja();
         }
     }
 }

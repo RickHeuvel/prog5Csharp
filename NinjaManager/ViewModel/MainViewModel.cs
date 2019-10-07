@@ -19,24 +19,38 @@ namespace NinjaManager.ViewModel
             set { _ninjas = value; RaisePropertyChanged(); }
         }
 
+        private NinjaViewModel _selectedNinja;
+        public NinjaViewModel SelectedNinja
+        {
+            get { return _selectedNinja; }
+            set { _selectedNinja = value; RaisePropertyChanged();}
+        }
+
         //windows
-        private ManageNinjasWindow _manageNinjasWindow;
+        private EditNinjaWindow _editNinjaWindow;
         //commands 
-        public ICommand ShowManageNinjasCommand { get; set; }
+        public ICommand ShowEditNinjaCommand { get; set; }
         public MainViewModel()
         {
             _ninjas = new ObservableCollection<NinjaViewModel>();
             getAllNinjas();
 
-            ShowManageNinjasCommand = new RelayCommand(ShowManageNinjas);
+            ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
         }
 
-        private void ShowManageNinjas()
+
+        #region EDIT ninja
+        private void ShowEditNinja()
         {
-            _manageNinjasWindow = new ManageNinjasWindow();
-            _manageNinjasWindow.Show();
+            _editNinjaWindow = new EditNinjaWindow();
+            _editNinjaWindow.Show();
         }
 
+        public void CloseEditNinja()
+        {
+            _editNinjaWindow.Close();
+        }
+        #endregion
         private void getAllNinjas()
         {
             using (var context = new NinjaDBEntities())

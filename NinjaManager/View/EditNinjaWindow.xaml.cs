@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace NinjaManager.View
 {
     /// <summary>
-    /// Interaction logic for ManageNinjaWindow.xaml
+    /// Interaction logic for EditNinjaWindow.xaml
     /// </summary>
-    public partial class ManageNinjasWindow : Window
+    public partial class EditNinjaWindow : Window
     {
-        public ManageNinjasWindow()
+        public EditNinjaWindow()
         {
             InitializeComponent();
         }
