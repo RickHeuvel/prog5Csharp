@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NinjaManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding Main, Source={StaticResource Locator} }">
+    <StackPanel>
+        <DataGrid ItemsSource="{Binding Ninjas}" Height="357" Margin="0,0,400,0"></DataGrid>
+        <Button Content="Manage Ninjas" Margin="0,0,400,0"/>
+    </StackPanel>
 </Window>
