@@ -12,13 +12,16 @@ namespace NinjaManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Ninja
+    public partial class Equipment
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Gold { get; set; }
-        public int Strenght { get; set; }
+        public int Strength { get; set; }
         public int Intelligence { get; set; }
         public int Agility { get; set; }
+        public int Category { get; set; }
+        public int Price { get; set; }
+    
+        public virtual EquipmentCategory EquipmentCategory1 { get; set; }
     }
 }

@@ -26,5 +26,8 @@ namespace NinjaManager
         }
     
         public virtual DbSet<Ninja> Ninjas { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<EquipmentCategory> EquipmentCategories { get; set; }
     }
 }
