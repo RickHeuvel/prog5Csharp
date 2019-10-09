@@ -1,0 +1,136 @@
+﻿<Window x:Class="NinjaManager.View.NinjaOverviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager.View"
+        mc:Ignorable="d"
+        Title="{Binding SelectedNinja.Name}" Height="700" Width="600"
+        DataContext="{Binding NinjaOverview, Source={StaticResource Locator}}">
+  
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/NinjaManager;component/IMG/ninja.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+
+        <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EquipmentName"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TYPE: "></TextBlock>
+                    <TextBlock Text="Amount"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--<Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="Strenght: " TextAlignment="Right"/>
+            <TextBlock Text="Agility: " TextAlignment="Right"/>
+            <TextBlock Text="Intelligence: " TextAlignment="Right"/>
+        </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="Strenght Value"/>
+                <TextBlock Text="Agility Value"/>
+                <TextBlock Text="Intelligence Value"/>
+            </StackPanel>
+        </Grid>-->
+
+
+        <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Strenght: "/>
+                <TextBlock Text="{Binding SelectedNinja.Strenght}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Agility: "/>
+                <TextBlock Text="{Binding SelectedNinja.Agility}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Intelligence: "/>
+                <TextBlock Text="{Binding SelectedNinja.Intelligence}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="GearValue: "></TextBlock>
+                <TextBlock Text="Amount"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Gold: "></TextBlock>
+                <TextBlock Text="{Binding SelectedNinja.Gold}"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+
+       
+
+
+    </Grid>
+</Window>
