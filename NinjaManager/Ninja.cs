@@ -9,6 +9,7 @@
 
 namespace NinjaManager
 {
+    using NinjaManager.ViewModel;
     using System;
     using System.Collections.Generic;
     
@@ -17,5 +18,10 @@ namespace NinjaManager
         public int Id { get; set; }
         public string Name { get; set; }
         public int Gold { get; set; }
+
+        public NinjaViewModel toPoCo()
+        {
+            return new NinjaViewModel(this);
+        }
     }
 }

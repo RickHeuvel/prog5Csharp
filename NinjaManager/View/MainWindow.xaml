@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator} }">
     <StackPanel>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" Height="418" Margin="0,0,399.6,0">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" Height="375" Margin="0,0,399.6,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gold" Binding="{Binding Gold}"></DataGridTextColumn>
@@ -29,5 +29,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Command="{Binding ShowAddNinjaCommand}" Content="Add Ninja"  Margin="0,0,399.6,0" Height="45"></Button>
     </StackPanel>
 </Window>

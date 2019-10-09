@@ -12,7 +12,7 @@ namespace NinjaManager.ViewModel
 {
     public class EditNinjaViewModel : ViewModelBase
     {
-        private MainViewModel mainModel;
+        private MainViewModel _mainModel;
 
         private NinjaViewModel _selectedNinja;
         public NinjaViewModel SelectedNinja
@@ -26,8 +26,8 @@ namespace NinjaManager.ViewModel
         public ICommand EditNinjaCommand { get; set; }
         public EditNinjaViewModel(MainViewModel main)
         {
-            mainModel = main;
-            SelectedNinja = mainModel.SelectedNinja;
+            _mainModel = main;
+            SelectedNinja = _mainModel.SelectedNinja;
 
             EditNinjaCommand = new RelayCommand(EditNinja, CanEditNinja);
            
@@ -57,7 +57,7 @@ namespace NinjaManager.ViewModel
                     context.SaveChanges();
                 }
             }
-            mainModel.CloseEditNinja();
+            _mainModel.CloseEditNinja();
         }
     }
 }

@@ -58,10 +58,17 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new EditNinjaViewModel(this.Main);
+                return new EditNinjaViewModel(Main);
             }
         }
         
+        public AddNinjaViewModel AddNinja
+        {
+            get
+            {
+                return new AddNinjaViewModel(Main);
+            }
+        }
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

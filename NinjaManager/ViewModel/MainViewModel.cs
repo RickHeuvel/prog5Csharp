@@ -28,18 +28,33 @@ namespace NinjaManager.ViewModel
 
         //windows
         private EditNinjaWindow _editNinjaWindow;
+        private AddNinjaWindow _addNinjaWindow;
+
         //commands 
         public ICommand ShowEditNinjaCommand { get; set; }
+        public ICommand ShowAddNinjaCommand { get; set; }
+        public ICommand DeleteNinjaCommand { get; set; }
         public MainViewModel()
         {
             _ninjas = new ObservableCollection<NinjaViewModel>();
             getAllNinjas();
 
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
+            ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
+            DeleteNinjaCommand = new RelayCommand(DeleteNinja);
         }
 
 
-        #region EDIT ninja
+        private void getAllNinjas()
+        {
+            Ninjas.Clear();
+            using (var context = new NinjaDBEntities())
+            {
+                context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
+            }
+        }
+
+        #region Edit ninja
         private void ShowEditNinja()
         {
             _editNinjaWindow = new EditNinjaWindow();
@@ -51,12 +66,31 @@ namespace NinjaManager.ViewModel
             _editNinjaWindow.Close();
         }
         #endregion
-        private void getAllNinjas()
+
+        #region Add ninja
+        private void ShowAddNinja()
+        {
+            _addNinjaWindow = new AddNinjaWindow();
+            _addNinjaWindow.Show();
+        }
+
+        public void CloseAddNinja()
+        {
+            _addNinjaWindow.Close();
+        }
+        #endregion
+        private void DeleteNinja()
         {
             using (var context = new NinjaDBEntities())
             {
-                context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
+                var ninja = context.Ninjas.ToList().Find(n => n.Id == SelectedNinja.Id);
+                context.Ninjas.Remove(ninja);
+                context.SaveChanges();
+
+                Ninjas.Remove(ninja.toPoCo());
             }
+
         }
+      
     }
 }
