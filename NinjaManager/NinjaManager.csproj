@@ -103,6 +103,7 @@
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\EditNinjaViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NinjaOverviewViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AddNinjaWindow.xaml.cs">
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="View\EditNinjaWindow.xaml.cs">
       <DependentUpon>EditNinjaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NinjaOverviewWindow.xaml.cs">
+      <DependentUpon>NinjaOverviewWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AddNinjaWindow.xaml">
       <SubType>Designer</SubType>
@@ -131,6 +135,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\NinjaOverviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -167,6 +175,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="IMG\ninja.png" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -181,6 +190,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

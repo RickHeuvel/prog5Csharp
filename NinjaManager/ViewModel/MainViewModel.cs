@@ -29,10 +29,13 @@ namespace NinjaManager.ViewModel
         //windows
         private EditNinjaWindow _editNinjaWindow;
         private AddNinjaWindow _addNinjaWindow;
+        private NinjaOverviewWindow _ninjaOverviewWindow;
 
         //commands 
         public ICommand ShowEditNinjaCommand { get; set; }
         public ICommand ShowAddNinjaCommand { get; set; }
+
+        public ICommand ShowNinjaOverviewCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
         public MainViewModel()
         {
@@ -41,9 +44,9 @@ namespace NinjaManager.ViewModel
 
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
+            ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
         }
-
 
         private void getAllNinjas()
         {
@@ -54,6 +57,7 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        #region NINJA
         #region Edit ninja
         private void ShowEditNinja()
         {
@@ -66,7 +70,6 @@ namespace NinjaManager.ViewModel
             _editNinjaWindow.Close();
         }
         #endregion
-
         #region Add ninja
         private void ShowAddNinja()
         {
@@ -79,6 +82,7 @@ namespace NinjaManager.ViewModel
             _addNinjaWindow.Close();
         }
         #endregion
+        #region Delete ninja
         private void DeleteNinja()
         {
             using (var context = new NinjaDBEntities())
@@ -91,6 +95,17 @@ namespace NinjaManager.ViewModel
             }
 
         }
-      
+        #endregion
+        #region Show ninja
+        private void ShowNinjaOverview()
+        {
+            _ninjaOverviewWindow = new NinjaOverviewWindow();
+            _ninjaOverviewWindow.Show();
+        }
+        #endregion
+
+    
+        #endregion
+
     }
 }
