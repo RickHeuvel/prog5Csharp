@@ -9,17 +9,20 @@
 
 namespace NinjaManager
 {
-    using NinjaManager.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+    using NinjaManager.ViewModel;
+
     public partial class Ninja
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int Gold { get; set; }
+        public int Strenght { get; set; }
+        public int Intelligence { get; set; }
+        public int Agility { get; set; }
 
-        public NinjaViewModel toPoCo()
+        internal NinjaViewModel toPoCo()
         {
             return new NinjaViewModel(this);
         }

@@ -29,6 +29,24 @@ namespace NinjaManager.ViewModel
             set { _ninja.Gold = value; RaisePropertyChanged("Gold"); }
         }
 
+        public int Strenght 
+        {
+            get { return _ninja.Strenght; }
+            set { _ninja.Strenght = value; RaisePropertyChanged("Strenght") ; } 
+        }
+
+        public int Intelligence
+        { 
+            get { return _ninja.Intelligence; }
+            set { _ninja.Intelligence = value; RaisePropertyChanged("Intelligence"); } 
+        }
+
+        public int Agility
+        {
+            get { return _ninja.Agility; }
+            set { _ninja.Agility = value; RaisePropertyChanged("Agility"); }
+        }
+
         public NinjaViewModel()
         {
             _ninja = new Ninja();

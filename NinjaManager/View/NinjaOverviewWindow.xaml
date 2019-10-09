@@ -7,22 +7,7 @@
         mc:Ignorable="d"
         Title="{Binding SelectedNinja.Name}" Height="700" Width="600"
         DataContext="{Binding NinjaOverview, Source={StaticResource Locator}}">
-    <!--<Grid>
-        <Image Source="/NinjaManager;component/IMG/ninja.png" Width="300" Height="400"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="99,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="557,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="63,244,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="602,336,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="571,575,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="99,533,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <TextBlock Text="Strength: x" HorizontalAlignment="Left" Margin="63,764,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock Text="Agility: x" HorizontalAlignment="Left" Margin="63,793,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock Text="Intelligence: x" HorizontalAlignment="Left" Margin="63,822,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock Text="Gear Value: x" HorizontalAlignment="Left" Margin="618,822,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock Text="Gold:" HorizontalAlignment="Left" Margin="618,793,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock Text="{Binding SelectedNinja.Gold}" HorizontalAlignment="Left" Margin="664,793,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-    </Grid>-->
-
+  
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -120,15 +105,15 @@
         <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Strenght: "/>
-                <TextBlock Text="Strenght Value"/>
+                <TextBlock Text="{Binding SelectedNinja.Strenght}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Agility: "/>
-                <TextBlock Text="Agility Value"/>
+                <TextBlock Text="{Binding SelectedNinja.Agility}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Intelligence: "/>
-                <TextBlock Text="Intelligence Value"/>
+                <TextBlock Text="{Binding SelectedNinja.Intelligence}"/>
             </StackPanel>
         </StackPanel>
 
