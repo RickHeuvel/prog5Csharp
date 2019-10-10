@@ -109,6 +109,7 @@
     <Compile Include="Ninja.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\EditNinjaViewModel.cs" />
     <Compile Include="ViewModel\EquipmentCategoryViewModel.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="ViewModel\NinjaOverviewViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AddEquipmentWindow.xaml.cs">
+      <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddNinjaWindow.xaml.cs">
       <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,10 @@
     <Compile Include="View\NinjaOverviewWindow.xaml.cs">
       <DependentUpon>NinjaOverviewWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddEquipmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddNinjaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

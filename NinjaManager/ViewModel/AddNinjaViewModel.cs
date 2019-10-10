@@ -12,21 +12,9 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        private string _name;
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        private int _gold;
-
-        public int Gold
-        {
-            get { return _gold; }
-            set { _gold = value; }
-        }
+        public int Gold { get; set; }
 
 
         public ICommand AddNinjaCommand { get; set; }

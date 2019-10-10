@@ -73,6 +73,7 @@
                     </DataGridTemplateColumn>-->
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Command="{Binding ShowAddEquipmentCommand}" Content="Add Equipment"  Height="45"></Button>
         </StackPanel>
     </StackPanel>
 </Window>

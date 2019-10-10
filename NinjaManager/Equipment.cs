@@ -11,7 +11,8 @@ namespace NinjaManager
 {
     using System;
     using System.Collections.Generic;
-    
+    using NinjaManager.ViewModel;
+
     public partial class Equipment
     {
         public int Id { get; set; }
@@ -23,5 +24,10 @@ namespace NinjaManager
         public int Price { get; set; }
     
         public virtual EquipmentCategory EquipmentCategory { get; set; }
+
+        internal EquipmentViewModel ToPoCo()
+        {
+            return new EquipmentViewModel(this);
+        }
     }
 }

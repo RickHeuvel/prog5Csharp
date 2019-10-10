@@ -38,13 +38,14 @@ namespace NinjaManager.ViewModel
         private EditNinjaWindow _editNinjaWindow;
         private AddNinjaWindow _addNinjaWindow;
         private NinjaOverviewWindow _ninjaOverviewWindow;
+        private AddEquipmentWindow _addEquipmentWindow;
 
         //commands 
         public ICommand ShowEditNinjaCommand { get; set; }
         public ICommand ShowAddNinjaCommand { get; set; }
-
         public ICommand ShowNinjaOverviewCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
+        public ICommand ShowAddEquipmentCommand { get; set; }
         public MainViewModel()
         {
             _ninjas = new ObservableCollection<NinjaViewModel>();
@@ -57,6 +58,8 @@ namespace NinjaManager.ViewModel
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
             ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
+
+            ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment);
         }
 
         private void getAllNinjas()
@@ -122,7 +125,20 @@ namespace NinjaManager.ViewModel
         }
         #endregion
 
-    
+
+        #endregion
+
+        #region Equipment
+        private void ShowAddEquipment()
+        {
+            _addEquipmentWindow = new AddEquipmentWindow();
+            _addEquipmentWindow.Show();
+        }
+
+        public void CloseAddEquipment()
+        {
+            _addEquipmentWindow.Close();
+        }
         #endregion
 
     }

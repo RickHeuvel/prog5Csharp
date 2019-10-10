@@ -11,7 +11,8 @@ namespace NinjaManager
 {
     using System;
     using System.Collections.Generic;
-    
+    using NinjaManager.ViewModel;
+
     public partial class EquipmentCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,12 @@ namespace NinjaManager
         {
             this.Equipments = new HashSet<Equipment>();
         }
-    
+
+        internal EquipmentCategoryViewModel ToPoCo()
+        {
+            return new EquipmentCategoryViewModel(this);
+        }
+
         public int CategoryId { get; set; }
         public string Name { get; set; }
     
