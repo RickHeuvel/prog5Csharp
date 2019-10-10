@@ -16,7 +16,7 @@ namespace NinjaManager.ViewModel
         public List<EquipmentCategoryViewModel> Categories { get; set; }
 
         public string Name { get; set; }
-        public int Strenght { get; set; }
+        public int Strength { get; set; }
         public int Intelligence { get; set; }
         public int Agility { get; set; }
         public int Price { get; set; }
@@ -51,7 +51,7 @@ namespace NinjaManager.ViewModel
                 Equipment e = new Equipment
                 {
                     Name = Name,
-                    Strength = Strenght,
+                    Strength = Strength,
                     Intelligence = Intelligence,
                     Agility = Agility,
                     CategoryId = SelectedCategory.CategoryId,
