@@ -26,6 +26,14 @@ namespace NinjaManager.ViewModel
             set { _selectedNinja = value; RaisePropertyChanged();}
         }
 
+        private ObservableCollection<EquipmentViewModel> _equipment;
+
+        public ObservableCollection<EquipmentViewModel> Equipment
+        {
+            get { return _equipment; }
+            set { _equipment = value; }
+        }
+
         //windows
         private EditNinjaWindow _editNinjaWindow;
         private AddNinjaWindow _addNinjaWindow;
@@ -42,6 +50,9 @@ namespace NinjaManager.ViewModel
             _ninjas = new ObservableCollection<NinjaViewModel>();
             getAllNinjas();
 
+            _equipment = new ObservableCollection<EquipmentViewModel>();
+            getAllEquipment();
+
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
             ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
@@ -50,10 +61,17 @@ namespace NinjaManager.ViewModel
 
         private void getAllNinjas()
         {
-            Ninjas.Clear();
             using (var context = new NinjaDBEntities())
             {
                 context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
+            }
+        }
+
+        private void getAllEquipment()
+        {
+            using (var context = new NinjaDBEntities())
+            {
+                context.Equipments.ToList().ForEach(e => Equipment.Add(new EquipmentViewModel(e)));
             }
         }
 
@@ -91,7 +109,7 @@ namespace NinjaManager.ViewModel
                 context.Ninjas.Remove(ninja);
                 context.SaveChanges();
 
-                Ninjas.Remove(ninja.toPoCo());
+                Ninjas.Remove(ninja.ToPoCo());
             }
 
         }

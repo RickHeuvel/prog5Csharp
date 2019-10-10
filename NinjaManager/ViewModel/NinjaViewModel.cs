@@ -47,10 +47,6 @@ namespace NinjaManager.ViewModel
             set { _ninja.Agility = value; RaisePropertyChanged("Agility"); }
         }
 
-        public NinjaViewModel()
-        {
-            _ninja = new Ninja();
-        }
 
         public NinjaViewModel(Ninja ninja)
         {

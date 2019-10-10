@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5e004d2a259f4af089dafc2fe72e8eb3" Name="Diagram1">
-        <EntityTypeShape EntityType="NinjaDBModel.Ninja" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaDBModel.C__RefactorLog" Width="1.5" PointX="0.5" PointY="3.625" />
-        <EntityTypeShape EntityType="NinjaDBModel.Equipment" Width="1.5" PointX="5.75" PointY="0.875" />
-        <EntityTypeShape EntityType="NinjaDBModel.EquipmentCategory" Width="1.5" PointX="8.875" PointY="1.25" />
-        <AssociationConnector Association="NinjaDBModel.FK_EquipmentCategory1" />
+      <Diagram DiagramId="92e645a7e60c41f197b69c2e47ade652" Name="Diagram1">
+        <EntityTypeShape EntityType="NinjaDBModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaDBModel.Equipment" Width="2.375" PointX="4.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaDBModel.EquipmentCategory" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaDBModel.Ninja" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="NinjaDBModel.FK_EquipmentCategory" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

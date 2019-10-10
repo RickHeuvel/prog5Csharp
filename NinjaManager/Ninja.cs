@@ -11,7 +11,8 @@ namespace NinjaManager
 {
     using System;
     using System.Collections.Generic;
-    
+    using NinjaManager.ViewModel;
+
     public partial class Ninja
     {
         public int Id { get; set; }
@@ -20,5 +21,10 @@ namespace NinjaManager
         public int Strenght { get; set; }
         public int Intelligence { get; set; }
         public int Agility { get; set; }
+
+        internal NinjaViewModel ToPoCo()
+        {
+            return new NinjaViewModel(this);
+        }
     }
 }

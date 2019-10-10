@@ -19,9 +19,9 @@ namespace NinjaManager
         public int Strength { get; set; }
         public int Intelligence { get; set; }
         public int Agility { get; set; }
-        public int Category { get; set; }
+        public int CategoryId { get; set; }
         public int Price { get; set; }
     
-        public virtual EquipmentCategory EquipmentCategory1 { get; set; }
+        public virtual EquipmentCategory EquipmentCategory { get; set; }
     }
 }

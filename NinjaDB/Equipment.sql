@@ -5,7 +5,7 @@
     [Strength] INT NOT NULL DEFAULT 0, 
     [Intelligence] INT NOT NULL DEFAULT 0, 
     [Agility] INT NOT NULL DEFAULT 0, 
-    [Category] INT NOT NULL, 
+    [CategoryId] INT NOT NULL, 
     [Price] INT NOT NULL, 
-    CONSTRAINT [FK_EquipmentCategory] FOREIGN KEY ([Category]) REFERENCES [dbo].[EquipmentCategory]([CategoryId])
+    CONSTRAINT [FK_EquipmentCategory] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[EquipmentCategory]([CategoryId])
 )

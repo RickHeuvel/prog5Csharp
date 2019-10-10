@@ -51,7 +51,7 @@ namespace NinjaManager.ViewModel
 
                 context.Ninjas.Add(n);
                 context.SaveChanges();
-                _mainModel.Ninjas.Add(n.toPoCo());
+                _mainModel.Ninjas.Add(n.ToPoCo());
            
             }
 
