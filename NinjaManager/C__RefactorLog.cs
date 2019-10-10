@@ -11,20 +11,9 @@ namespace NinjaManager
 {
     using System;
     using System.Collections.Generic;
-    using NinjaManager.ViewModel;
-
-    public partial class Ninja
+    
+    public partial class C__RefactorLog
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Gold { get; set; }
-        public int Strenght { get; set; }
-        public int Intelligence { get; set; }
-        public int Agility { get; set; }
-
-        internal NinjaViewModel ToPoCo()
-        {
-            return new NinjaViewModel(this);
-        }
+        public System.Guid OperationKey { get; set; }
     }
 }

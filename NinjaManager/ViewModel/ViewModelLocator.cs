@@ -78,6 +78,22 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        public AddEquipmentViewModel AddEquipment
+        {
+            get
+            {
+                return new AddEquipmentViewModel(Main);
+            }
+        }
+
+        public EditEquipmentViewModel EditEquipment
+        {
+            get
+            {
+                return new EditEquipmentViewModel(Main);
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

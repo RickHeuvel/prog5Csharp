@@ -1,0 +1,25 @@
+﻿<Window x:Class="NinjaManager.View.AddEquipmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager.View"
+        mc:Ignorable="d"
+        Title="AddEquipmentWindow" Height="450" Width="300"
+        DataContext="{Binding AddEquipment, Source={StaticResource Locator}}">
+    <StackPanel Grid.Column="1">
+        <TextBlock Text="Name:" Margin="10,10,10,0"></TextBlock>
+        <TextBox Text="{Binding Name}" Margin="10,0,10,0" ></TextBox>
+        <TextBlock Text="Category:" Margin="10,0,10,0"></TextBlock>
+        <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Margin="10,0,10,0"></ComboBox>
+        <TextBlock Text="Strength:" Margin="10,10,10,0"></TextBlock>
+        <TextBox Text="{Binding Strength}" Margin="10,0,10,0" ></TextBox>
+        <TextBlock Text="Intelligence:" Margin="10,0,10,0"></TextBlock>
+        <TextBox Text="{Binding Intelligence}" Margin="10,0,10,0"></TextBox>
+        <TextBlock Text="Agility:" Margin="10,10,10,0"></TextBlock>
+        <TextBox Text="{Binding Agility}" Margin="10,0,10,0" ></TextBox>
+        <TextBlock Text="Price:" Margin="10,0,10,0"></TextBlock>
+        <TextBox Text="{Binding Price}" Margin="10,0,10,0"></TextBox>
+        <Button Content="Add" Command="{Binding AddEquipmentCommand}" Height="38" Margin="10,10,10,0"/>
+    </StackPanel>
+</Window>
