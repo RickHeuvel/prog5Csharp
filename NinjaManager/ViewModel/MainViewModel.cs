@@ -48,6 +48,7 @@ namespace NinjaManager.ViewModel
         private AddNinjaWindow _addNinjaWindow;
         private NinjaOverviewWindow _ninjaOverviewWindow;
         private AddEquipmentWindow _addEquipmentWindow;
+        private EditEquipmentWindow _editEquipmentWindow;
 
         //commands 
         public ICommand ShowEditNinjaCommand { get; set; }
@@ -56,6 +57,7 @@ namespace NinjaManager.ViewModel
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand ShowAddEquipmentCommand { get; set; }
         public ICommand DeleteEquipmentCommand { get; set; }
+        public ICommand ShowEditEquipmentCommand { get; set; }
         public MainViewModel()
         {
             _ninjas = new ObservableCollection<NinjaViewModel>();
@@ -70,6 +72,7 @@ namespace NinjaManager.ViewModel
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
 
             ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment);
+            ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
             DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);
         }
 
@@ -141,7 +144,7 @@ namespace NinjaManager.ViewModel
 
         #region Equipment
 
-        #region Add Ninja
+        #region Add Equipment
         private void ShowAddEquipment()
         {
             _addEquipmentWindow = new AddEquipmentWindow();
@@ -154,7 +157,7 @@ namespace NinjaManager.ViewModel
         }
         #endregion
 
-        #region Delete Ninja
+        #region Delete Equipment
         private void DeleteEquipment()
         {
             using (var context = new NinjaDBEntities())
@@ -164,8 +167,20 @@ namespace NinjaManager.ViewModel
                 context.SaveChanges();
 
                 Equipment.Remove(equipment.ToPoCo());
-                RaisePropertyChanged("Equipment");
             }
+        }
+        #endregion
+
+        #region Edit Equipment
+        private void ShowEditEquipment()
+        {
+            _editEquipmentWindow = new EditEquipmentWindow();
+            _editEquipmentWindow.Show();
+        }
+
+        public void CloseEditEquipment()
+        {
+            _editEquipmentWindow.Close();
         }
         #endregion
         #endregion

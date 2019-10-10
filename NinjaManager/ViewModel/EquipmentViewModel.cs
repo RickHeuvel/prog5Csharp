@@ -26,13 +26,13 @@ namespace NinjaManager.ViewModel
         public int Strength
         {
             get { return _equipment.Strength; }
-            set { _equipment.Strength = value; RaisePropertyChanged("Strenght"); }
+            set { _equipment.Strength = value; RaisePropertyChanged("Strength"); }
         }
 
         public int Intelligence
         {
             get { return _equipment.Strength; }
-            set { _equipment.Strength = value; RaisePropertyChanged("Strenght"); }
+            set { _equipment.Strength = value; RaisePropertyChanged("Intelligence"); }
         }
 
         public int Agility
@@ -50,11 +50,20 @@ namespace NinjaManager.ViewModel
         public EquipmentCategoryViewModel Category
         {
             get {
+                    using (var context = new NinjaDBEntities())
+                    {
+                        return new EquipmentCategoryViewModel(context.Equipments.ToList().Where(e => e.Id == _equipment.Id).First().EquipmentCategory);
+                    }
+                }
+            set
+            {
                 using (var context = new NinjaDBEntities())
                 {
-                    return new EquipmentCategoryViewModel(context.Equipments.ToList().Where(e => e.Id == _equipment.Id).First().EquipmentCategory);
+                    _equipment.EquipmentCategory = context.EquipmentCategories.Single(e => e.CategoryId == value.CategoryId);
+                    RaisePropertyChanged("EquipmentCategory");
                 }
-                }
+                
+            }
         }
 
         public int Price 
