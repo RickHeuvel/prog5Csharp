@@ -82,6 +82,8 @@ namespace NinjaManager.ViewModel
                     context.SaveChanges();
                 }
             }
+
+            _mainModel.CloseEditEquipment();
         }
     }
 }
