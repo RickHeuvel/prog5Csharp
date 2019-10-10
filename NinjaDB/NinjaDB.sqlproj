@@ -61,6 +61,7 @@
     <Build Include="Ninja.sql" />
     <Build Include="Equipment.sql" />
     <Build Include="EquipmentCategory.sql" />
+    <Build Include="NinjaEquipment.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="NinjaDB.refactorlog" />
