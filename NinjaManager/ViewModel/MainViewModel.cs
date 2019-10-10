@@ -31,8 +31,17 @@ namespace NinjaManager.ViewModel
         public ObservableCollection<EquipmentViewModel> Equipment
         {
             get { return _equipment; }
-            set { _equipment = value; }
+            set { _equipment = value; RaisePropertyChanged(); }
         }
+
+        private EquipmentViewModel _selectedEquipment;
+
+        public EquipmentViewModel SelectedEquipment
+        {
+            get { return _selectedEquipment; }
+            set { _selectedEquipment = value; RaisePropertyChanged(); }
+        }
+
 
         //windows
         private EditNinjaWindow _editNinjaWindow;
@@ -46,6 +55,7 @@ namespace NinjaManager.ViewModel
         public ICommand ShowNinjaOverviewCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand ShowAddEquipmentCommand { get; set; }
+        public ICommand DeleteEquipmentCommand { get; set; }
         public MainViewModel()
         {
             _ninjas = new ObservableCollection<NinjaViewModel>();
@@ -60,6 +70,7 @@ namespace NinjaManager.ViewModel
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
 
             ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment);
+            DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);
         }
 
         private void getAllNinjas()
@@ -129,6 +140,8 @@ namespace NinjaManager.ViewModel
         #endregion
 
         #region Equipment
+
+        #region Add Ninja
         private void ShowAddEquipment()
         {
             _addEquipmentWindow = new AddEquipmentWindow();
@@ -139,6 +152,22 @@ namespace NinjaManager.ViewModel
         {
             _addEquipmentWindow.Close();
         }
+        #endregion
+
+        #region Delete Ninja
+        private void DeleteEquipment()
+        {
+            using (var context = new NinjaDBEntities())
+            {
+                var equipment = context.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+                context.Equipments.Remove(equipment);
+                context.SaveChanges();
+
+                Equipment.Remove(equipment.ToPoCo());
+                RaisePropertyChanged("Equipment");
+            }
+        }
+        #endregion
         #endregion
 
     }
