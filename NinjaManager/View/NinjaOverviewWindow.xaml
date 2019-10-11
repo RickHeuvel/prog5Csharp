@@ -23,85 +23,129 @@
 
         <Image Source="/NinjaManager;component/IMG/ninja.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
 
-        <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+        <!--<DataGrid ItemsSource="{Binding Equipment}" Grid.ColumnSpan="3"></DataGrid>-->
+         <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
+           <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding HeadEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding HeadEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding HeadEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding HeadEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
+                  
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding ShoulderEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding ShoulderEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding ShoulderEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding ShoulderEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding ChestEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding ChestEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding ChestEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding ChestEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding BeltEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding BeltEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding BeltEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding BeltEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding LegsEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding LegsEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding LegsEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding LegsEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="EquipmentName"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="TYPE: "></TextBlock>
-                    <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding BootsEquipment.Name}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Str : "></TextBlock>
+                        <TextBlock Text="{Binding BootsEquipment.Strength}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ag: "></TextBlock>
+                        <TextBlock Text="{Binding BootsEquipment.Agility}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Int: "></TextBlock>
+                        <TextBlock Text="{Binding BootsEquipment.Intelligence}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
 
-        <!--<Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Text="Strenght: " TextAlignment="Right"/>
-            <TextBlock Text="Agility: " TextAlignment="Right"/>
-            <TextBlock Text="Intelligence: " TextAlignment="Right"/>
-        </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <TextBlock Text="Strenght Value"/>
-                <TextBlock Text="Agility Value"/>
-                <TextBlock Text="Intelligence Value"/>
-            </StackPanel>
-        </Grid>-->
-
-
+ 
         <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Strenght: "/>
