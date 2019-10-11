@@ -81,7 +81,6 @@ namespace NinjaManager.ViewModel
             }
         }
 
-
         public NinjaViewModel(Ninja ninja)
         {
             _ninja = ninja;

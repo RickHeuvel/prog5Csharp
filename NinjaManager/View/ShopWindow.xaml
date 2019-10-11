@@ -1,0 +1,38 @@
+﻿<Window x:Class="NinjaManager.View.ShopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager.View"
+        mc:Ignorable="d"
+        Title="ShopWindow" Height="450" Width="800"
+        DataContext="{Binding Shop, Source={StaticResource Locator}}">
+    
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <Button Content="Head" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10" IsDefault="True"></Button>
+            <Button Content="Shoulders"  Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
+            <Button Content="Chest" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
+            <Button Content="Belt" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
+            <Button Content="Legs" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
+            <Button Content="Boots" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
+        </StackPanel>
+        <StackPanel>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedEquipment}" >
+                <!--SelectedItem="{Binding SelectedEquipment}">-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Category.Name}" Visibility="Hidden"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <!--<StackPanel>
+            <TextBlock>Name:</TextBlock>
+            <TextBlock>Strenght:</TextBlock>
+            <TextBlock>Agility:</TextBlock>
+            <TextBlock>Price:</TextBlock>
+            <Button Content="Buy"></Button>
+        </StackPanel>-->
+    </StackPanel>
+</Window>

@@ -171,7 +171,7 @@
                 <TextBlock Text="{Binding SelectedNinja.Gold}"></TextBlock>
             </StackPanel>
         </StackPanel>
-
+        <Button Command="{Binding ShowShopCommand}" Grid.Column="1" Grid.Row="3" Content="Shop" Width="150" Height="50"> </Button>
 
        
 

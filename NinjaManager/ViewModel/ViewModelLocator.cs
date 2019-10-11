@@ -94,6 +94,14 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        public ShopViewModel Shop
+        {
+            get
+            {
+                return new ShopViewModel(Main);
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

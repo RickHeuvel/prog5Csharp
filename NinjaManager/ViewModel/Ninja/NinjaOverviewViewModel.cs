@@ -1,10 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using NinjaManager.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
@@ -12,70 +15,26 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        private NinjaViewModel _selectedNinja;
+        public NinjaViewModel SelectedNinja { get; set; }
 
-        public NinjaViewModel SelectedNinja
-        {
-            get { return _selectedNinja; }
-            set { _selectedNinja = value;  }
-        }
+        public EquipmentViewModel HeadEquipment { get; set; }
 
-        private EquipmentViewModel _headEquipment;
+        public EquipmentViewModel ShoulderEquipment { get; set; }
 
-        public EquipmentViewModel HeadEquipment
-        {
-            get { return _headEquipment; }
-            set { _headEquipment = value; }
-        }
-        private EquipmentViewModel _shoulderEquipment;
+        public EquipmentViewModel ChestEquipment { get; set; }
 
-        public EquipmentViewModel ShoulderEquipment
-        {
-            get { return _shoulderEquipment; }
-            set { _shoulderEquipment = value;}
-        }
+        public EquipmentViewModel BeltEquipment { get; set; }
 
-        private EquipmentViewModel _chestEquipment;
+        public EquipmentViewModel LegsEquipment { get; set; }
 
-        public EquipmentViewModel ChestEquipment
-        {
-            get { return _chestEquipment; }
-            set { _chestEquipment = value; }
-        }
+        public EquipmentViewModel BootsEquipment { get; set; }
 
-        private EquipmentViewModel _beltEquipment;
-
-        public EquipmentViewModel BeltEquipment
-        {
-            get { return _beltEquipment; }
-            set { _beltEquipment = value;}
-        }
-
-        private EquipmentViewModel _legsEquipment;
-
-        public EquipmentViewModel LegsEquipment
-        {
-            get { return _legsEquipment; }
-            set { _legsEquipment = value;}
-        }
-
-        private EquipmentViewModel _bootsEquipment;
-
-        public EquipmentViewModel BootsEquipment
-        {
-            get { return _bootsEquipment; }
-            set { _bootsEquipment = value;}
-        }
-
-        private ObservableCollection<EquipmentViewModel> _equipment;
-
-        public ObservableCollection<EquipmentViewModel> Equipment
-        {
-            get { return _equipment; }
-            set { _equipment = value;}
-        }
+        public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
 
+        public ICommand ShowShopCommand { get; set; }
+
+        private ShopWindow _shopWindow;
 
 
         public NinjaOverviewViewModel(MainViewModel main)
@@ -85,11 +44,14 @@ namespace NinjaManager.ViewModel
             Equipment = new ObservableCollection<EquipmentViewModel>();
             SelectedNinja = _mainModel.SelectedNinja;
 
-            getNinjaEquipment();
-          
+            GetNinjaEquipment();
+
+            ShowShopCommand = new RelayCommand(ShowShop);
+         
         }
 
-        private void getNinjaEquipment()
+
+        private void GetNinjaEquipment()
         {
             List<int> ids = new List<int>();
 
@@ -134,6 +96,10 @@ namespace NinjaManager.ViewModel
             }
         }
 
-
+        private void ShowShop()
+        {
+            _shopWindow = new ShopWindow();
+            _shopWindow.Show();
+        }
     }
 }
