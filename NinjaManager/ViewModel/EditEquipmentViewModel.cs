@@ -44,12 +44,12 @@ namespace NinjaManager.ViewModel
             _mainModel = main;
             SelectedEquipment = _mainModel.SelectedEquipment;
 
-            getCategories();
+            GetCategories();
 
             EditEquipmentCommand = new RelayCommand(EditEquipment);
         }
 
-        private void getCategories()
+        private void GetCategories()
         {
             Categories = new List<EquipmentCategoryViewModel>();
             using (var context = new NinjaDBEntities())

@@ -20,7 +20,7 @@ namespace NinjaManager.ViewModel
         public string Name
         {
             get { return _equipment.Name; }
-            set { _equipment.Name = value; RaisePropertyChanged("Name"); }
+            set { _equipment.Name = value; RaisePropertyChanged("Name"); RaisePropertyChanged<NinjaViewModel>("Equipment"); }
         }
 
         public int Strength
@@ -60,7 +60,7 @@ namespace NinjaManager.ViewModel
                 using (var context = new NinjaDBEntities())
                 {
                     _equipment.EquipmentCategory = context.EquipmentCategories.Single(e => e.CategoryId == value.CategoryId);
-                    RaisePropertyChanged("EquipmentCategory");
+                    RaisePropertyChanged("Category");
                 }
                 
             }
@@ -76,6 +76,5 @@ namespace NinjaManager.ViewModel
         {
             _equipment = equipment;
         }
-
     }
 }
