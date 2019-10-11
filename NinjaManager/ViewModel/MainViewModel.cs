@@ -11,36 +11,12 @@ namespace NinjaManager.ViewModel
    
     public class MainViewModel : ViewModelBase
     {
-        private ObservableCollection<NinjaViewModel> _ninjas;
+        public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
+        public NinjaViewModel SelectedNinja { get; set; }
 
-        public ObservableCollection<NinjaViewModel> Ninjas
-        {
-            get { return _ninjas; }
-            set { _ninjas = value; RaisePropertyChanged(); }
-        }
+        public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
-        private NinjaViewModel _selectedNinja;
-        public NinjaViewModel SelectedNinja
-        {
-            get { return _selectedNinja; }
-            set { _selectedNinja = value; RaisePropertyChanged();}
-        }
-
-        private ObservableCollection<EquipmentViewModel> _equipment;
-
-        public ObservableCollection<EquipmentViewModel> Equipment
-        {
-            get { return _equipment; }
-            set { _equipment = value; RaisePropertyChanged(); }
-        }
-
-        private EquipmentViewModel _selectedEquipment;
-
-        public EquipmentViewModel SelectedEquipment
-        {
-            get { return _selectedEquipment; }
-            set { _selectedEquipment = value; RaisePropertyChanged(); }
-        }
+        public EquipmentViewModel SelectedEquipment { get; set; }
 
 
         //windows
@@ -60,10 +36,10 @@ namespace NinjaManager.ViewModel
         public ICommand ShowEditEquipmentCommand { get; set; }
         public MainViewModel()
         {
-            _ninjas = new ObservableCollection<NinjaViewModel>();
+            Ninjas = new ObservableCollection<NinjaViewModel>();
             getAllNinjas();
 
-            _equipment = new ObservableCollection<EquipmentViewModel>();
+            Equipment = new ObservableCollection<EquipmentViewModel>();
             getAllEquipment();
 
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);

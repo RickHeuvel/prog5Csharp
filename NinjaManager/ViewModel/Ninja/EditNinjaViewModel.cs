@@ -14,12 +14,7 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        private NinjaViewModel _selectedNinja;
-        public NinjaViewModel SelectedNinja
-        { 
-            get { return _selectedNinja; } 
-            set { _selectedNinja = value; RaisePropertyChanged(); } 
-        }
+        public NinjaViewModel SelectedNinja { get; set; }
 
 
         //commands

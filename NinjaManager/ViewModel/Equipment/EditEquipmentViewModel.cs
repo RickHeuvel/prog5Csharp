@@ -25,14 +25,8 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        private EquipmentViewModel _selectedEquipment;
-
         public List<EquipmentCategoryViewModel> Categories { get; set; }
-        public EquipmentViewModel SelectedEquipment
-        {
-            get { return _selectedEquipment; }
-            set { _selectedEquipment = value; RaisePropertyChanged(); }
-        }
+        public EquipmentViewModel SelectedEquipment { get; set; }
 
         public EquipmentCategoryViewModel SelectedCategory { get; set; }
 
@@ -64,7 +58,7 @@ namespace NinjaManager.ViewModel
         private void EditEquipment()
         {
 
-            _selectedEquipment.Category = SelectedCategory;
+            SelectedEquipment.Category = SelectedCategory;
 
             using (var context = new NinjaDBEntities())
             {

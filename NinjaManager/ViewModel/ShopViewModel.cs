@@ -14,34 +14,105 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
+        public NinjaViewModel SelectedNinja { get; set; }
+
+  
+
+
         public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
-        private String _selectedCategory;
+        private string _selectedCategory;
 
-        public String SelectedCategory
+        public string SelectedCategory
         {
             get { return _selectedCategory; }
             set 
             {
-                _selectedCategory = value; RaisePropertyChanged("SelectedCategory");
+                _selectedCategory = value; 
                 ShowSelectedCategory(value);
             }
         }
 
-        public ObservableCollection<EquipmentViewModel> SelectedEquipment { get; set; }
+        public ObservableCollection<EquipmentViewModel> SelectedEquipmentList { get; set; }
 
+
+        private EquipmentViewModel _selectedEquipment;
+
+        public EquipmentViewModel SelectedEquipment
+        {
+            get { return _selectedEquipment; }
+            set { _selectedEquipment = value; RaisePropertyChanged(); }
+        }
+
+
+
+        //Commands
         public ICommand BtnSelectCommand { get; set; }
+        public ICommand BuyItemCommand { get; set; }
 
         public ShopViewModel(MainViewModel main)
         {
             _mainModel = main;
-            SelectedEquipment = new ObservableCollection<EquipmentViewModel>();
+            SelectedNinja = _mainModel.SelectedNinja;
+            SelectedEquipmentList = new ObservableCollection<EquipmentViewModel>();
             Equipment = _mainModel.Equipment;
+            
            
-            SelectedCategory = "Head";
            
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
-          
+            BuyItemCommand = new RelayCommand(BuyItem);
+
+            SelectedCategory = "Head";
+            SelectedEquipment = SelectedEquipmentList.First();
+
+        }
+
+        public bool CanBuyItem()
+        {
+            if (SelectedEquipment != null)
+            {
+                var matchingEquipment = SelectedNinja.Equipments.ToList().Find(e => e.CategoryId == SelectedEquipment.CategoryId);
+                if (SelectedNinja.Gold > SelectedEquipment.Price && matchingEquipment == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private void BuyItem()
+        {
+            if (CanBuyItem())
+            {
+                using (var context = new NinjaDBEntities())
+                {
+                    var ninja = context.Ninjas.Single(n => n.Id == SelectedNinja.Id);
+                    var equipment = context.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+
+                    if (ninja != null)
+                    {
+                        ninja.Equipments.Add(equipment);
+                        ninja.Strenght += equipment.Strength;
+                        ninja.Intelligence += equipment.Intelligence;
+                        ninja.Agility += equipment.Agility;
+                        ninja.Gold -= equipment.Price;
+                        context.SaveChanges();
+
+                        SelectedNinja.Equipments.Add(SelectedEquipment);
+                        SelectedNinja.Strenght += SelectedEquipment.Strength;
+                        SelectedNinja.Intelligence += SelectedEquipment.Intelligence;
+                        SelectedNinja.Agility += SelectedEquipment.Agility;
+                        SelectedNinja.Gold -= SelectedEquipment.Price; 
+                        int value = 0;
+                        ninja.Equipments.ToList().ForEach(e => value += e.Price);
+                        SelectedNinja.GearValue = value; 
+                    }
+                }
+            }
         }
 
         private void BtnSelectClick(string cat)
@@ -49,12 +120,10 @@ namespace NinjaManager.ViewModel
             SelectedCategory = cat;
         }
 
-      
-
         private void ShowSelectedCategory(string cat)
         {
-            SelectedEquipment.Clear(); 
-            Equipment.ToList().FindAll(e => e.Category.Name == cat).ForEach(e => SelectedEquipment.Add(e));
+            SelectedEquipmentList.Clear(); 
+            Equipment.ToList().FindAll(e => e.Category.Name == cat).ForEach(e => SelectedEquipmentList.Add(e));
         }
 
 

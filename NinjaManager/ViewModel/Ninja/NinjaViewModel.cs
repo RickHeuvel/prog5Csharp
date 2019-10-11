@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace NinjaManager.ViewModel
     {
 
         private Ninja _ninja;
+
+        private int _gearValue;
         public int Id
         {
             get { return _ninja.Id; }
@@ -57,7 +60,7 @@ namespace NinjaManager.ViewModel
                 ObservableCollection<EquipmentViewModel> collection = new ObservableCollection<EquipmentViewModel>();
                 using (var context = new NinjaDBEntities())
                 {
-                    context.Ninjas.ToList().Single(n => n.Id == _ninja.Id).Equipments.ToList().ForEach(e => collection.Add(e.ToPoCo()));
+                    context.Ninjas.Single(n => n.Id == _ninja.Id).Equipments.ToList().ForEach(e => collection.Add(e.ToPoCo()));
                     return collection;
                 };
             }
@@ -79,6 +82,22 @@ namespace NinjaManager.ViewModel
 
                 _ninja.Equipments = collection; RaisePropertyChanged("Equipments");
             }
+        }
+
+        public int GearValue 
+        {
+            get
+            {
+                int value = 0;
+
+                using (var context = new NinjaDBEntities())
+                {
+                    context.Ninjas.Single(n => n.Id == _ninja.Id).Equipments.ToList().ForEach(e => value += e.Price);
+                }
+            
+                return value;
+            }
+            set { _gearValue = value; RaisePropertyChanged("GearValue"); }
         }
 
         public NinjaViewModel(Ninja ninja)

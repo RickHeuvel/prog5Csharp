@@ -15,7 +15,16 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        public NinjaViewModel SelectedNinja { get; set; }
+        //public NinjaViewModel SelectedNinja { get; set; }
+
+        private NinjaViewModel _selectedNinja;
+
+        public NinjaViewModel SelectedNinja
+        {
+            get { return _selectedNinja; }
+            set { _selectedNinja = value; SetEquipmentTypes(); }
+        }
+
 
         public EquipmentViewModel HeadEquipment { get; set; }
 
@@ -29,7 +38,11 @@ namespace NinjaManager.ViewModel
 
         public EquipmentViewModel BootsEquipment { get; set; }
 
-        public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
+        public ObservableCollection<EquipmentViewModel> Equipment 
+        {
+            get { return SelectedNinja.Equipments; }
+            set { SelectedNinja.Equipments = value; SetEquipmentTypes(); } 
+        }
 
 
         public ICommand ShowShopCommand { get; set; }
@@ -41,27 +54,12 @@ namespace NinjaManager.ViewModel
         {
 
             _mainModel = main;
-            Equipment = new ObservableCollection<EquipmentViewModel>();
-            SelectedNinja = _mainModel.SelectedNinja;
 
-            GetNinjaEquipment();
+            SelectedNinja = _mainModel.SelectedNinja;
+            Equipment = new ObservableCollection<EquipmentViewModel>();
 
             ShowShopCommand = new RelayCommand(ShowShop);
          
-        }
-
-
-        private void GetNinjaEquipment()
-        {
-            List<int> ids = new List<int>();
-
-            // get all ids of the equipment belonging to ninja
-            SelectedNinja.Equipments.ToList().ForEach(e => ids.Add(e.Id));
-
-            // get all equipment from main equipmentlist matching id
-            ids.ForEach(i => Equipment.Add(_mainModel.Equipment.Where(e => e.Id == i).First()));
-
-            SetEquipmentTypes();
         }
 
         //check categorie and fill correct object 
@@ -89,7 +87,6 @@ namespace NinjaManager.ViewModel
                     case "Boots":
                         BootsEquipment = item;
                         break;
-
                     default:
                         break;
                 }

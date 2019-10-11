@@ -20,7 +20,7 @@ namespace NinjaManager.ViewModel
         public string Name
         {
             get { return _equipment.Name; }
-            set { _equipment.Name = value; RaisePropertyChanged("Name"); RaisePropertyChanged<NinjaViewModel>("Equipment"); }
+            set { _equipment.Name = value; RaisePropertyChanged("Name");}
         }
 
         public int Strength
@@ -31,8 +31,8 @@ namespace NinjaManager.ViewModel
 
         public int Intelligence
         {
-            get { return _equipment.Strength; }
-            set { _equipment.Strength = value; RaisePropertyChanged("Intelligence"); }
+            get { return _equipment.Intelligence; }
+            set { _equipment.Intelligence = value; RaisePropertyChanged("Intelligence"); }
         }
 
         public int Agility

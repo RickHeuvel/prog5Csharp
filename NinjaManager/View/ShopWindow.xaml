@@ -9,7 +9,7 @@
         DataContext="{Binding Shop, Source={StaticResource Locator}}">
     
     <StackPanel Orientation="Horizontal">
-        <StackPanel>
+        <StackPanel Width="200">
             <Button Content="Head" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10" IsDefault="True"></Button>
             <Button Content="Shoulders"  Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
             <Button Content="Chest" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
@@ -17,9 +17,8 @@
             <Button Content="Legs" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
             <Button Content="Boots" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
         </StackPanel>
-        <StackPanel>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedEquipment}" >
-                <!--SelectedItem="{Binding SelectedEquipment}">-->
+        <StackPanel Width="300">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedEquipmentList}" SelectedItem="{Binding SelectedEquipment}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
@@ -27,12 +26,24 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <!--<StackPanel>
-            <TextBlock>Name:</TextBlock>
-            <TextBlock>Strenght:</TextBlock>
-            <TextBlock>Agility:</TextBlock>
-            <TextBlock>Price:</TextBlock>
-            <Button Content="Buy"></Button>
-        </StackPanel>-->
+        <StackPanel Width="300">
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel>
+                    <TextBlock>Name:</TextBlock>
+                    <TextBlock>Strenght:</TextBlock>
+                    <TextBlock>Intelligence: </TextBlock>
+                    <TextBlock>Agility:</TextBlock>
+                    <TextBlock>Price:</TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="{Binding SelectedEquipment.Name}"></TextBlock>
+                    <TextBlock Text="{Binding SelectedEquipment.Strength}"></TextBlock>
+                    <TextBlock Text="{Binding SelectedEquipment.Agility}"></TextBlock>
+                    <TextBlock Text="{Binding SelectedEquipment.Intelligence}"></TextBlock>
+                    <TextBlock Text="{Binding SelectedEquipment.Price}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <Button Command="{Binding BuyItemCommand}" IsEnabled="{Binding CanBuy}" Content="Buy" Width="100" Height="50" Margin="10"></Button>
+        </StackPanel>
     </StackPanel>
 </Window>

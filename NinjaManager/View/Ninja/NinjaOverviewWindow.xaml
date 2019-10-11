@@ -164,7 +164,7 @@
         <StackPanel Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="GearValue: "></TextBlock>
-                <TextBlock Text="Amount"></TextBlock>
+                <TextBlock Text="{Binding SelectedNinja.GearValue}"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Gold: "></TextBlock>
