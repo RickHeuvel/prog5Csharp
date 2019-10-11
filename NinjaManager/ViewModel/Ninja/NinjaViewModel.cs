@@ -100,6 +100,8 @@ namespace NinjaManager.ViewModel
             set { _gearValue = value; RaisePropertyChanged("GearValue"); }
         }
 
+
+ 
         public NinjaViewModel(Ninja ninja)
         {
             _ninja = ninja;

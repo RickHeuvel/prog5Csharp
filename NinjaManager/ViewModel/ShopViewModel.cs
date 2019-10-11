@@ -49,6 +49,7 @@ namespace NinjaManager.ViewModel
         //Commands
         public ICommand BtnSelectCommand { get; set; }
         public ICommand BuyItemCommand { get; set; }
+        public ICommand SellAllCommand { get; set; }
 
         public ShopViewModel(MainViewModel main)
         {
@@ -61,6 +62,7 @@ namespace NinjaManager.ViewModel
            
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
             BuyItemCommand = new RelayCommand(BuyItem);
+            SellAllCommand = new RelayCommand(SellItem);
 
             SelectedCategory = "Head";
             SelectedEquipment = SelectedEquipmentList.First();
@@ -111,6 +113,56 @@ namespace NinjaManager.ViewModel
                         ninja.Equipments.ToList().ForEach(e => value += e.Price);
                         SelectedNinja.GearValue = value; 
                     }
+                }
+            }
+        }
+
+        private void SellItem()
+        {
+            using (var context = new NinjaDBEntities())
+            {
+                var ninja = context.Ninjas.Single(n => n.Id == SelectedNinja.Id);
+                var equipment = ninja.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+
+                if (ninja != null && equipment != null)
+                {
+                    ninja.Equipments.Remove(equipment);
+                    ninja.Strenght -= equipment.Strength;
+                    ninja.Intelligence -= equipment.Intelligence;
+                    ninja.Agility -= equipment.Agility;
+                    ninja.Gold += equipment.Price;
+                    context.SaveChanges();
+
+                    SelectedNinja.Equipments.Remove(SelectedEquipment);
+                    SelectedNinja.Strenght -= SelectedEquipment.Strength;
+                    SelectedNinja.Intelligence -= SelectedEquipment.Intelligence;
+                    SelectedNinja.Agility -= SelectedEquipment.Agility;
+                    SelectedNinja.Gold += SelectedEquipment.Price;
+                    SelectedNinja.GearValue = SelectedNinja.GearValue - equipment.Price;
+                }
+            }
+        }
+        private void SellAll()
+        {
+            using (var context = new NinjaDBEntities())
+            {
+                var ninja = context.Ninjas.Single(n => n.Id == SelectedNinja.Id);
+
+                if (ninja != null)
+                {
+                    ninja.Gold += SelectedNinja.GearValue;
+                    ninja.Intelligence = 0;
+                    ninja.Strenght = 0;
+                    ninja.Agility = 0;
+                    ninja.Equipments.Clear();
+                    context.SaveChanges();
+
+                    SelectedNinja.Gold = ninja.Gold;
+                    SelectedNinja.GearValue = 0;
+                    SelectedNinja.Intelligence = 0;
+                    SelectedNinja.Strenght = 0;
+                    SelectedNinja.Agility = 0;
+                    SelectedNinja.Equipments.Clear();
                 }
             }
         }
