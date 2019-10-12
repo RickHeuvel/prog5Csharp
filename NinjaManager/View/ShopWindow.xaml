@@ -44,7 +44,8 @@
                 </StackPanel>
             </StackPanel>
             <Button Command="{Binding BuyItemCommand}" Content="Buy" Width="100" Height="50" Margin="10"></Button>
-            <Button Command="{Binding SellAllCommand}" Content="Sell All" Background="red" Width="100" Height="50" Margin="100"/>
+            <Button Command="{Binding SellItemCommand}" Content="Sell item" Width="100" Height="50" Margin="10"></Button>
+            <Button Command="{Binding SellAllCommand}" Content="Sell All" Background="red" Width="100" Height="50" Margin="10"/>
         </StackPanel>
     </StackPanel>
 </Window>

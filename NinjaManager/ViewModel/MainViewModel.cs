@@ -102,7 +102,7 @@ namespace NinjaManager.ViewModel
                 context.Ninjas.Remove(ninja);
                 context.SaveChanges();
 
-                Ninjas.Remove(ninja.ToPoCo());
+                Ninjas.Remove(Ninjas.ToList().Find(n => n.Id == ninja.Id));
             }
 
         }
@@ -142,7 +142,7 @@ namespace NinjaManager.ViewModel
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
 
-                Equipment.Remove(equipment.ToPoCo());
+                Equipment.Remove(Equipment.ToList().Find(e => e.Id == equipment.Id));
             }
         }
         #endregion

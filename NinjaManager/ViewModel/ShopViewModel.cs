@@ -49,6 +49,7 @@ namespace NinjaManager.ViewModel
         //Commands
         public ICommand BtnSelectCommand { get; set; }
         public ICommand BuyItemCommand { get; set; }
+        public ICommand SellItemCommand { get; set; }
         public ICommand SellAllCommand { get; set; }
 
         public ShopViewModel(MainViewModel main)
@@ -62,7 +63,8 @@ namespace NinjaManager.ViewModel
            
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
             BuyItemCommand = new RelayCommand(BuyItem);
-            SellAllCommand = new RelayCommand(SellItem);
+            SellItemCommand = new RelayCommand(SellItem);
+            SellAllCommand = new RelayCommand(SellAll);
 
             SelectedCategory = "Head";
             SelectedEquipment = SelectedEquipmentList.First();
