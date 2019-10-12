@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,39 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class AddNinjaViewModel
+    public class AddNinjaViewModel: ViewModelBase
     {
         private MainViewModel _mainModel;
 
-        public string Name { get; set; }
+        private string _name;
+        public string Name { get { return _name; } set { _name = value; RaisePropertyChanged("AddNinjaCommand"); } }
 
-        public int Gold { get; set; }
+        private int _gold;
+
+        public int Gold
+        {
+            get { return _gold; }
+            set { _gold = value; RaisePropertyChanged("AddNinjaCommand"); }
+        }
 
 
-        public ICommand AddNinjaCommand { get; set; }
+
+        public RelayCommand AddNinjaCommand { get { return new RelayCommand(AddNinja,CanAddNinja); }}
+
 
         public AddNinjaViewModel(MainViewModel main)
         {
             _mainModel = main;
-
-            AddNinjaCommand = new RelayCommand(AddNinja, CanAddNinja);
+            Name = "";
         }
 
         private bool CanAddNinja()
         {
-            return true;
+            if (Name.Length > 0 && !Name.StartsWith(" ") && Gold > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void AddNinja()

@@ -9,9 +9,9 @@
         DataContext="{Binding AddNinja, Source={StaticResource Locator}}">
     <StackPanel Grid.Column="1">
         <TextBlock Text="Name:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding Name}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Gold:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding Gold}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding Gold, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <Button Content="Add" Command="{Binding AddNinjaCommand}" Height="38" Margin="10,10,10,0"/>
     </StackPanel>
 </Window>

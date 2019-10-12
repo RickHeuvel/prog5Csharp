@@ -9,9 +9,9 @@
         DataContext="{Binding EditNinja, Source={StaticResource Locator}}">
     <StackPanel Grid.Column="1">
         <TextBlock Text="Name:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedNinja.Name, Mode=TwoWay}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Gold:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedNinja.Gold, Mode=TwoWay}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding Gold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <Button Content="Edit" Command="{Binding EditNinjaCommand}" Height="38" Margin="10,10,10,0"/>
     </StackPanel>
 </Window>

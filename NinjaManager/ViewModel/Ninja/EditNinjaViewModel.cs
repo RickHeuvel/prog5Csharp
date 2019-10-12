@@ -16,27 +16,34 @@ namespace NinjaManager.ViewModel
 
         public NinjaViewModel SelectedNinja { get; set; }
 
+        public string Name
+        {
+            get { return SelectedNinja.Name; }
+            set { SelectedNinja.Name = value; RaisePropertyChanged("EditNinjaCommand"); }
+        }
 
+        public int Gold 
+        { 
+            get { return SelectedNinja.Gold; }
+            set { SelectedNinja.Gold = value; RaisePropertyChanged("EditNinjaCommand"); }
+        }
         //commands
-        public ICommand EditNinjaCommand { get; set; }
+        public RelayCommand EditNinjaCommand { get { return new RelayCommand(EditNinja, CanEditNinja); } }
+        
         public EditNinjaViewModel(MainViewModel main)
         {
             _mainModel = main;
             SelectedNinja = _mainModel.SelectedNinja;
-
-            EditNinjaCommand = new RelayCommand(EditNinja, CanEditNinja);
-           
         }
 
         private bool CanEditNinja()
         {
-           /* if (SelectedNinja != null)
+            if (Name.Length > 0 && !Name.StartsWith(" ") && Gold > 0)
             {
                 return true;
             }
             return false;
-*/
-            return true;
+
         }
 
         private void EditNinja()
