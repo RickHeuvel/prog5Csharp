@@ -9,17 +9,17 @@
  DataContext="{Binding EditEquipment, Source={StaticResource Locator}}">
     <StackPanel Grid.Column="1">
         <TextBlock Text="Name:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedEquipment.Name}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding SelectedEquipment.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Category:" Margin="10,0,10,0"></TextBlock>
-        <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Margin="10,0,10,0"></ComboBox>
+        <ComboBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Margin="10,0,10,0"></ComboBox>
         <TextBlock Text="Strength:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedEquipment.Strength}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding SelectedEquipment.Strength, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Intelligence:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedEquipment.Intelligence}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding SelectedEquipment.Intelligence, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <TextBlock Text="Agility:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedEquipment.Agility}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding SelectedEquipment.Agility, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Price:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding SelectedEquipment.Price}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding SelectedEquipment.Price, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <Button Content="Edit" Command="{Binding EditEquipmentCommand}" Height="38" Margin="10,10,10,0"/>
     </StackPanel>
 </Window>

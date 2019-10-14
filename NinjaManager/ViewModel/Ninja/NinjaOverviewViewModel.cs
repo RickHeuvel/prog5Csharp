@@ -25,8 +25,16 @@ namespace NinjaManager.ViewModel
             set { _selectedNinja = value; SetEquipmentTypes(); }
         }
 
+        private EquipmentViewModel _headEquipment;
 
-        public EquipmentViewModel HeadEquipment { get; set; }
+        public EquipmentViewModel HeadEquipment
+        {
+            get { return _headEquipment; }
+            set { _headEquipment = value; RaisePropertyChanged(); }
+        }
+
+
+       // public EquipmentViewModel HeadEquipment { get; set; }
 
         public EquipmentViewModel ShoulderEquipment { get; set; }
 

@@ -9,17 +9,17 @@
         DataContext="{Binding AddEquipment, Source={StaticResource Locator}}">
     <StackPanel Grid.Column="1">
         <TextBlock Text="Name:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding Name}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Category:" Margin="10,0,10,0"></TextBlock>
-        <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Margin="10,0,10,0"></ComboBox>
+        <ComboBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Margin="10,0,10,0"></ComboBox>
         <TextBlock Text="Strength:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding Strength}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding Strength, UpdateSourceTrigger=PropertyChanged}"  Margin="10,0,10,0" />
         <TextBlock Text="Intelligence:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding Intelligence}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding Intelligence, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <TextBlock Text="Agility:" Margin="10,10,10,0"></TextBlock>
-        <TextBox Text="{Binding Agility}" Margin="10,0,10,0" ></TextBox>
+        <TextBox Text="{Binding Agility, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" ></TextBox>
         <TextBlock Text="Price:" Margin="10,0,10,0"></TextBlock>
-        <TextBox Text="{Binding Price}" Margin="10,0,10,0"></TextBox>
+        <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"></TextBox>
         <Button Content="Add" Command="{Binding AddEquipmentCommand}" Height="38" Margin="10,10,10,0"/>
     </StackPanel>
 </Window>

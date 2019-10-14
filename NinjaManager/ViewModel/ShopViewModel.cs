@@ -10,14 +10,11 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class ShopViewModel: ViewModelBase
+    public class ShopViewModel : ViewModelBase
     {
         private MainViewModel _mainModel;
 
         public NinjaViewModel SelectedNinja { get; set; }
-
-  
-
 
         public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
@@ -26,9 +23,9 @@ namespace NinjaManager.ViewModel
         public string SelectedCategory
         {
             get { return _selectedCategory; }
-            set 
+            set
             {
-                _selectedCategory = value; 
+                _selectedCategory = value;
                 ShowSelectedCategory(value);
             }
         }
@@ -41,15 +38,17 @@ namespace NinjaManager.ViewModel
         public EquipmentViewModel SelectedEquipment
         {
             get { return _selectedEquipment; }
-            set { _selectedEquipment = value; RaisePropertyChanged(); }
+            set { _selectedEquipment = value; RaisePropertyChanged("SellItemCommand"); RaisePropertyChanged("BuyItemCommand"); }
         }
 
 
 
         //Commands
         public ICommand BtnSelectCommand { get; set; }
-        public ICommand BuyItemCommand { get; set; }
-        public ICommand SellItemCommand { get; set; }
+        public RelayCommand BuyItemCommand { get { return new RelayCommand(BuyItem, CanBuyItem); } }
+        public RelayCommand SellItemCommand { get { return new RelayCommand(SellItem, CanSellItem); } }
+
+
         public ICommand SellAllCommand { get; set; }
 
         public ShopViewModel(MainViewModel main)
@@ -58,12 +57,10 @@ namespace NinjaManager.ViewModel
             SelectedNinja = _mainModel.SelectedNinja;
             SelectedEquipmentList = new ObservableCollection<EquipmentViewModel>();
             Equipment = _mainModel.Equipment;
-            
-           
-           
+
+
+
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
-            BuyItemCommand = new RelayCommand(BuyItem);
-            SellItemCommand = new RelayCommand(SellItem);
             SellAllCommand = new RelayCommand(SellAll);
 
             SelectedCategory = "Head";
@@ -73,6 +70,7 @@ namespace NinjaManager.ViewModel
 
         public bool CanBuyItem()
         {
+
             if (SelectedEquipment != null)
             {
                 var matchingEquipment = SelectedNinja.Equipments.ToList().Find(e => e.CategoryId == SelectedEquipment.CategoryId);
@@ -90,33 +88,33 @@ namespace NinjaManager.ViewModel
 
         private void BuyItem()
         {
-            if (CanBuyItem())
+            using (var context = new NinjaDBEntities())
             {
-                using (var context = new NinjaDBEntities())
+                var ninja = context.Ninjas.Single(n => n.Id == SelectedNinja.Id);
+                var equipment = context.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+
+                if (ninja != null)
                 {
-                    var ninja = context.Ninjas.Single(n => n.Id == SelectedNinja.Id);
-                    var equipment = context.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+                    ninja.Equipments.Add(equipment);
+                    ninja.Strenght += equipment.Strength;
+                    ninja.Intelligence += equipment.Intelligence;
+                    ninja.Agility += equipment.Agility;
+                    ninja.Gold -= equipment.Price;
+                    context.SaveChanges();
 
-                    if (ninja != null)
-                    {
-                        ninja.Equipments.Add(equipment);
-                        ninja.Strenght += equipment.Strength;
-                        ninja.Intelligence += equipment.Intelligence;
-                        ninja.Agility += equipment.Agility;
-                        ninja.Gold -= equipment.Price;
-                        context.SaveChanges();
-
-                        SelectedNinja.Equipments.Add(SelectedEquipment);
-                        SelectedNinja.Strenght += SelectedEquipment.Strength;
-                        SelectedNinja.Intelligence += SelectedEquipment.Intelligence;
-                        SelectedNinja.Agility += SelectedEquipment.Agility;
-                        SelectedNinja.Gold -= SelectedEquipment.Price; 
-                        int value = 0;
-                        ninja.Equipments.ToList().ForEach(e => value += e.Price);
-                        SelectedNinja.GearValue = value; 
-                    }
+                    SelectedNinja.Equipments.Add(SelectedEquipment);
+                    SelectedNinja.Strenght += SelectedEquipment.Strength;
+                    SelectedNinja.Intelligence += SelectedEquipment.Intelligence;
+                    SelectedNinja.Agility += SelectedEquipment.Agility;
+                    SelectedNinja.Gold -= SelectedEquipment.Price;
+                    int value = 0;
+                    ninja.Equipments.ToList().ForEach(e => value += e.Price);
+                    SelectedNinja.GearValue = value;
                 }
             }
+
+            RaisePropertyChanged("SellItemCommand"); 
+            RaisePropertyChanged("BuyItemCommand");
         }
 
         private void SellItem()
@@ -143,6 +141,24 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.GearValue = SelectedNinja.GearValue - equipment.Price;
                 }
             }
+
+            RaisePropertyChanged("SellItemCommand");
+            RaisePropertyChanged("BuyItemCommand");
+        }
+        private bool CanSellItem()
+        {
+            if (SelectedEquipment != null)
+            {
+
+                EquipmentViewModel temp = SelectedNinja.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+
+                if (temp != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
         private void SellAll()
         {
@@ -176,7 +192,7 @@ namespace NinjaManager.ViewModel
 
         private void ShowSelectedCategory(string cat)
         {
-            SelectedEquipmentList.Clear(); 
+            SelectedEquipmentList.Clear();
             Equipment.ToList().FindAll(e => e.Category.Name == cat).ForEach(e => SelectedEquipmentList.Add(e));
         }
 

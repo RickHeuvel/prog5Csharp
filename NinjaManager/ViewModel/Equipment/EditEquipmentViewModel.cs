@@ -31,7 +31,7 @@ namespace NinjaManager.ViewModel
         public EquipmentCategoryViewModel SelectedCategory { get; set; }
 
 
-        public ICommand EditEquipmentCommand {get; set; }
+        public RelayCommand EditEquipmentCommand { get { return new RelayCommand(EditEquipment, CanEditEquipment); } }
 
         public EditEquipmentViewModel(MainViewModel main)
         {
@@ -40,7 +40,6 @@ namespace NinjaManager.ViewModel
 
             GetCategories();
 
-            EditEquipmentCommand = new RelayCommand(EditEquipment);
         }
 
         private void GetCategories()
@@ -53,7 +52,7 @@ namespace NinjaManager.ViewModel
                 SelectedCategory = new EquipmentCategoryViewModel(context.Equipments
                     .Single(e => e.Id == SelectedEquipment.Id).EquipmentCategory);
             }
-         
+
         }
         private void EditEquipment()
         {
@@ -78,6 +77,11 @@ namespace NinjaManager.ViewModel
             }
 
             _mainModel.CloseEditEquipment();
+        }
+
+        private bool CanEditEquipment()
+        {
+            return true;
         }
     }
 }
