@@ -13,6 +13,7 @@ namespace NinjaManager.ViewModel
     public class ShopViewModel : ViewModelBase
     {
         private MainViewModel _mainModel;
+        private NinjaOverviewViewModel _ninjaOverview;
 
         public NinjaViewModel SelectedNinja { get; set; }
 
@@ -51,9 +52,10 @@ namespace NinjaManager.ViewModel
 
         public ICommand SellAllCommand { get; set; }
 
-        public ShopViewModel(MainViewModel main)
+        public ShopViewModel(MainViewModel main, NinjaOverviewViewModel nOverview)
         {
             _mainModel = main;
+            _ninjaOverview = nOverview;
             SelectedNinja = _mainModel.SelectedNinja;
             SelectedEquipmentList = new ObservableCollection<EquipmentViewModel>();
             Equipment = _mainModel.Equipment;
@@ -74,7 +76,7 @@ namespace NinjaManager.ViewModel
             if (SelectedEquipment != null)
             {
                 var matchingEquipment = SelectedNinja.Equipments.ToList().Find(e => e.CategoryId == SelectedEquipment.CategoryId);
-                if (SelectedNinja.Gold > SelectedEquipment.Price && matchingEquipment == null)
+                if (SelectedNinja.Gold >= SelectedEquipment.Price && matchingEquipment == null)
                 {
                     return true;
                 }
@@ -112,7 +114,7 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.GearValue = value;
                 }
             }
-
+            _ninjaOverview.SelectedNinja = SelectedNinja;
             RaisePropertyChanged("SellItemCommand"); 
             RaisePropertyChanged("BuyItemCommand");
         }
@@ -141,7 +143,7 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.GearValue = SelectedNinja.GearValue - equipment.Price;
                 }
             }
-
+            _ninjaOverview.SelectedNinja.RaisePropertyChanged();
             RaisePropertyChanged("SellItemCommand");
             RaisePropertyChanged("BuyItemCommand");
         }

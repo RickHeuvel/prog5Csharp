@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using NinjaManager.View;
+using System.Collections.Generic;
 
 namespace NinjaManager.ViewModel
 {
@@ -14,9 +15,30 @@ namespace NinjaManager.ViewModel
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
         public NinjaViewModel SelectedNinja { get; set; }
 
-        public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
-        public EquipmentViewModel SelectedEquipment { get; set; }
+        private ObservableCollection<EquipmentViewModel> _equipment;
+
+        public ObservableCollection<EquipmentViewModel> Equipment
+        {
+            get { return _equipment; }
+            set { _equipment = value;  }
+        }
+
+
+        //  public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
+
+        //     public EquipmentViewModel SelectedEquipment { get; set; }
+
+        private EquipmentViewModel _selectedEquipment;
+
+        public EquipmentViewModel SelectedEquipment
+        {
+            get { return _selectedEquipment; }
+            set { _selectedEquipment = value;
+                RaisePropertyChanged("DeleteEquipmentCommand");
+            }
+        }
+
 
 
         //windows
@@ -32,7 +54,7 @@ namespace NinjaManager.ViewModel
         public ICommand ShowNinjaOverviewCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand ShowAddEquipmentCommand { get; set; }
-        public ICommand DeleteEquipmentCommand { get; set; }
+        public RelayCommand<int> DeleteEquipmentCommand { get { return new RelayCommand<int>(DeleteEquipment, CanDeleteEquipment); } }
         public ICommand ShowEditEquipmentCommand { get; set; }
         public MainViewModel()
         {
@@ -46,10 +68,10 @@ namespace NinjaManager.ViewModel
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
             ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
-
             ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment);
             ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
-            DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);
+      //      DeleteEquipmentCommand = new RelayCommand<int>(DeleteEquipment, CanDeleteEquipment);
+
         }
 
         private void getAllNinjas()
@@ -99,6 +121,7 @@ namespace NinjaManager.ViewModel
             using (var context = new NinjaDBEntities())
             {
                 var ninja = context.Ninjas.ToList().Find(n => n.Id == SelectedNinja.Id);
+                ninja.Equipments.Clear();
                 context.Ninjas.Remove(ninja);
                 context.SaveChanges();
 
@@ -134,11 +157,28 @@ namespace NinjaManager.ViewModel
         #endregion
 
         #region Delete Equipment
-        private void DeleteEquipment()
+        private bool CanDeleteEquipment(int id)
         {
             using (var context = new NinjaDBEntities())
             {
-                var equipment = context.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+                var equipment = context.Equipments.ToList().Find(e => e.Id == id);
+
+                if (equipment != null && equipment.Ninjas.Count > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+        }
+        private void DeleteEquipment(int id)
+        {
+            using (var context = new NinjaDBEntities())
+            {
+                var equipment = context.Equipments.ToList().Find(e => e.Id == id);
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
 

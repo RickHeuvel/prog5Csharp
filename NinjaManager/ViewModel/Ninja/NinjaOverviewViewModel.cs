@@ -15,14 +15,13 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-
-        private NinjaViewModel _selectedNinja;
-
+        private NinjaViewModel _selectedNinja { get; set; }
         public NinjaViewModel SelectedNinja
         {
             get { return _selectedNinja; }
-            set { _selectedNinja = value; SetEquipmentTypes(); }
+            set { _selectedNinja = value; SetEquipmentTypes();}
         }
+
 
         private EquipmentViewModel _headEquipment;
 
@@ -31,6 +30,8 @@ namespace NinjaManager.ViewModel
             get { return _headEquipment; }
             set { _headEquipment = value; RaisePropertyChanged(); }
         }
+
+      //  public EquipmentViewModel HeadEquipment { get; set; }
 
         public EquipmentViewModel ShoulderEquipment { get; set; }
 
@@ -41,13 +42,6 @@ namespace NinjaManager.ViewModel
         public EquipmentViewModel LegsEquipment { get; set; }
 
         public EquipmentViewModel BootsEquipment { get; set; }
-
-        public ObservableCollection<EquipmentViewModel> Equipment 
-        {
-            get { return SelectedNinja.Equipments; }
-            set { SelectedNinja.Equipments = value; SetEquipmentTypes(); } 
-        }
-
 
         public ICommand ShowShopCommand { get; set; }
 
@@ -60,7 +54,7 @@ namespace NinjaManager.ViewModel
             _mainModel = main;
 
             SelectedNinja = _mainModel.SelectedNinja;
-            Equipment = new ObservableCollection<EquipmentViewModel>();
+           
 
             ShowShopCommand = new RelayCommand(ShowShop);
          
@@ -69,7 +63,8 @@ namespace NinjaManager.ViewModel
         //check categorie and fill correct object 
         private void SetEquipmentTypes()
         {
-            foreach (var item in Equipment)
+            
+            foreach (var item in SelectedNinja.Equipments)
             {
                 switch (item.Category.Name)
                 {

@@ -26,7 +26,7 @@
         <!--<DataGrid ItemsSource="{Binding Equipment}" Grid.ColumnSpan="3"></DataGrid>-->
          <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" BorderBrush="Black" BorderThickness="2" Width="100" Height="100">
            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="{Binding HeadEquipment.Name}"></TextBlock>
+                <TextBlock Text="{Binding HeadEquipment.Name, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Str : "></TextBlock>

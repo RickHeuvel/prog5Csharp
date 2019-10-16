@@ -98,7 +98,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new ShopViewModel(Main);
+                return new ShopViewModel(Main, NinjaOverview);
             }
         }
 
