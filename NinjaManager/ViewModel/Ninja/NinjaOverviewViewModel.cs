@@ -15,7 +15,6 @@ namespace NinjaManager.ViewModel
     {
         private MainViewModel _mainModel;
 
-        //public NinjaViewModel SelectedNinja { get; set; }
 
         private NinjaViewModel _selectedNinja;
 
@@ -32,9 +31,6 @@ namespace NinjaManager.ViewModel
             get { return _headEquipment; }
             set { _headEquipment = value; RaisePropertyChanged(); }
         }
-
-
-       // public EquipmentViewModel HeadEquipment { get; set; }
 
         public EquipmentViewModel ShoulderEquipment { get; set; }
 

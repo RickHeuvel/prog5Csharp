@@ -38,7 +38,7 @@ namespace NinjaManager.ViewModel
         public EquipmentViewModel SelectedEquipment
         {
             get { return _selectedEquipment; }
-            set { _selectedEquipment = value; RaisePropertyChanged("SellItemCommand"); RaisePropertyChanged("BuyItemCommand"); }
+            set { _selectedEquipment = value; RaisePropertyChanged(); RaisePropertyChanged("SellItemCommand"); RaisePropertyChanged("BuyItemCommand"); }
         }
 
 
