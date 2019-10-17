@@ -15,14 +15,7 @@ namespace NinjaManager.ViewModel
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
         public NinjaViewModel SelectedNinja { get; set; }
 
-
-        private ObservableCollection<EquipmentViewModel> _equipment;
-
-        public ObservableCollection<EquipmentViewModel> Equipment
-        {
-            get { return _equipment; }
-            set { _equipment = value;  }
-        }
+        public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
 
         //  public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
@@ -157,6 +150,8 @@ namespace NinjaManager.ViewModel
         #endregion
 
         #region Delete Equipment
+
+        // check if any ninja has the equipment i want to delete if so return false
         private bool CanDeleteEquipment(int id)
         {
             using (var context = new NinjaDBEntities())
