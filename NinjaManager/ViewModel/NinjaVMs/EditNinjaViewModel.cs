@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace NinjaManager.ViewModel
 {
     public class EditNinjaViewModel : ViewModelBase
     {
-        private MainViewModel _mainModel;
+        private ManageNinjasViewModel _manageNinjasModel;
 
         public NinjaViewModel SelectedNinja { get; set; }
 
@@ -27,13 +28,14 @@ namespace NinjaManager.ViewModel
             get { return SelectedNinja.Gold; }
             set { SelectedNinja.Gold = value; RaisePropertyChanged("EditNinjaCommand"); }
         }
+
         //commands
         public RelayCommand EditNinjaCommand { get { return new RelayCommand(EditNinja, CanEditNinja); } }
         
-        public EditNinjaViewModel(MainViewModel main)
+        public EditNinjaViewModel(ManageNinjasViewModel manageNinjas)
         {
-            _mainModel = main;
-            SelectedNinja = _mainModel.SelectedNinja;
+            _manageNinjasModel = manageNinjas;
+            SelectedNinja = _manageNinjasModel.SelectedNinja;
         }
 
         private bool CanEditNinja()
@@ -59,7 +61,7 @@ namespace NinjaManager.ViewModel
                     context.SaveChanges();
                 }
             }
-            _mainModel.CloseEditNinja();
+            _manageNinjasModel.CloseEditNinja();
         }
     }
 }

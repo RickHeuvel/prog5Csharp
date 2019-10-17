@@ -15,7 +15,7 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-
+using NinjaManager.ViewModel.NinjaVMs;
 
 namespace NinjaManager.ViewModel
 {
@@ -44,6 +44,8 @@ namespace NinjaManager.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ManageNinjasViewModel>();
+
         }
 
         public MainViewModel Main
@@ -54,11 +56,19 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        public ManageNinjasViewModel ManageNinjas
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ManageNinjasViewModel>();
+            }
+        }
+
         public EditNinjaViewModel EditNinja
         {
             get
             {
-                return new EditNinjaViewModel(Main);
+                return new EditNinjaViewModel(ManageNinjas);
             }
         }
 
@@ -66,7 +76,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new AddNinjaViewModel(Main);
+                return new AddNinjaViewModel(ManageNinjas);
             }
         }
 
@@ -74,7 +84,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new NinjaOverviewViewModel(Main);
+                return new NinjaOverviewViewModel(ManageNinjas);
             }
         }
 
