@@ -109,12 +109,13 @@
     <Compile Include="Ninja.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Equipment\AddEquipmentViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentVMs\AddEquipmentViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentVMs\ManageEquipmentViewModel.cs" />
     <Compile Include="ViewModel\NinjaVMs\AddNinjaViewModel.cs" />
-    <Compile Include="ViewModel\Equipment\EditEquipmentViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentVMs\EditEquipmentViewModel.cs" />
     <Compile Include="ViewModel\NinjaVMs\EditNinjaViewModel.cs" />
-    <Compile Include="ViewModel\Equipment\EquipmentCategoryViewModel.cs" />
-    <Compile Include="ViewModel\Equipment\EquipmentViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentVMs\EquipmentCategoryViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentVMs\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NinjaVMs\ManageNinjasViewModel.cs" />
     <Compile Include="ViewModel\NinjaVMs\NinjaOverviewViewModel.cs" />
@@ -123,6 +124,9 @@
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Equipment\AddEquipmentWindow.xaml.cs">
       <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Equipment\ManageEquipmentWindow.xaml.cs">
+      <DependentUpon>ManageEquipmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Ninja\AddNinjaWindow.xaml.cs">
       <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
@@ -143,6 +147,10 @@
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Equipment\AddEquipmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Equipment\ManageEquipmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

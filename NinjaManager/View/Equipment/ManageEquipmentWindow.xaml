@@ -1,0 +1,39 @@
+﻿<Window x:Class="NinjaManager.View.Equipment.ManageEquipmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager.View.Equipment"
+        mc:Ignorable="d"
+        Title="ManageEquipmentWindow" Height="450" Width="800"
+        DataContext="{Binding ManageEquipment, Source={StaticResource Locator}}">
+    <StackPanel Margin="20,0,0,0">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Equipment}" SelectedItem="{Binding SelectedEquipment}" Height="375">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Strength" Binding="{Binding Strength}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Agility" Binding="{Binding Agility}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.ShowEditEquipmentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.DeleteEquipmentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Id }"
+                                        BorderThickness="0,0,0,1" Background="#FFD45134" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" >Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding ShowAddEquipmentCommand}" Content="Add Equipment"  Height="45"></Button>
+    </StackPanel>
+</Window>

@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NinjaManager.ViewModel;
+using NinjaManager.ViewModel.EquipmentVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+
 namespace NinjaManager.ViewModel
 {
     public class AddEquipmentViewModel : ViewModelBase
     {
-        private MainViewModel _mainModel;
+        private ManageEquipmentViewModel _manageEquipment;
 
         public List<EquipmentCategoryViewModel> Categories { get; set; }
 
@@ -37,9 +40,9 @@ namespace NinjaManager.ViewModel
         public RelayCommand AddEquipmentCommand { get { return new RelayCommand(AddEquipment, CanAddEquipment); } }
 
 
-        public AddEquipmentViewModel(MainViewModel main)
+        public AddEquipmentViewModel(ManageEquipmentViewModel manageEquipment)
         {
-            _mainModel = main;
+            _manageEquipment = manageEquipment;
 
             GetCategories();
         }
@@ -70,10 +73,10 @@ namespace NinjaManager.ViewModel
 
                 context.Equipments.Add(e);
                 context.SaveChanges();
-                _mainModel.Equipment.Add(e.ToPoCo());
+                _manageEquipment.Equipment.Add(e.ToPoCo());
             }
 
-            _mainModel.CloseAddEquipment();
+            _manageEquipment.CloseAddEquipment();
         }
 
         private bool CanAddEquipment()

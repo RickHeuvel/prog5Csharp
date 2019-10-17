@@ -15,6 +15,7 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using NinjaManager.ViewModel.EquipmentVMs;
 using NinjaManager.ViewModel.NinjaVMs;
 
 namespace NinjaManager.ViewModel
@@ -45,6 +46,7 @@ namespace NinjaManager.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ManageNinjasViewModel>();
+            SimpleIoc.Default.Register<ManageEquipmentViewModel>();
 
         }
 
@@ -64,6 +66,13 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        public ManageEquipmentViewModel ManageEquipment 
+        {
+            get 
+            {
+                return ServiceLocator.Current.GetInstance<ManageEquipmentViewModel>();
+            }
+        }
         public EditNinjaViewModel EditNinja
         {
             get
@@ -92,7 +101,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new AddEquipmentViewModel(Main);
+                return new AddEquipmentViewModel(ManageEquipment);
             }
         }
 
@@ -100,7 +109,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new EditEquipmentViewModel(Main);
+                return new EditEquipmentViewModel(ManageEquipment);
             }
         }
 
@@ -108,7 +117,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new ShopViewModel(Main, NinjaOverview);
+                return new ShopViewModel(ManageNinjas, ManageEquipment);
             }
         }
 

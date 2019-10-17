@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NinjaManager.ViewModel.EquipmentVMs;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,8 +14,8 @@ namespace NinjaManager.ViewModel
 {
     public class ShopViewModel : ViewModelBase
     {
-        private MainViewModel _mainModel;
-        private NinjaOverviewViewModel _ninjaOverview;
+        private ManageNinjasViewModel _manageNinjas;
+        private ManageEquipmentViewModel _manageEquipment;
 
         public NinjaViewModel SelectedNinja { get; set; }
 
@@ -48,19 +50,16 @@ namespace NinjaManager.ViewModel
         public ICommand BtnSelectCommand { get; set; }
         public RelayCommand BuyItemCommand { get { return new RelayCommand(BuyItem, CanBuyItem); } }
         public RelayCommand SellItemCommand { get { return new RelayCommand(SellItem, CanSellItem); } }
-
-
         public ICommand SellAllCommand { get; set; }
 
-        public ShopViewModel(MainViewModel main, NinjaOverviewViewModel nOverview)
+        public ShopViewModel(ManageNinjasViewModel manageNinjas, ManageEquipmentViewModel manageEquipment)
         {
-            _mainModel = main;
-            _ninjaOverview = nOverview;
-            SelectedNinja = _mainModel.SelectedNinja;
+            _manageNinjas = manageNinjas;
+            _manageEquipment = manageEquipment;
+
+            SelectedNinja = _manageNinjas.SelectedNinja;
             SelectedEquipmentList = new ObservableCollection<EquipmentViewModel>();
-            Equipment = _mainModel.Equipment;
-
-
+            Equipment = _manageEquipment.Equipment;
 
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
             SellAllCommand = new RelayCommand(SellAll);
@@ -114,7 +113,6 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.GearValue = value;
                 }
             }
-            _ninjaOverview.SelectedNinja = SelectedNinja;
             RaisePropertyChanged("SellItemCommand"); 
             RaisePropertyChanged("BuyItemCommand");
         }
@@ -143,7 +141,6 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.GearValue = SelectedNinja.GearValue - equipment.Price;
                 }
             }
-            _ninjaOverview.SelectedNinja.RaisePropertyChanged();
             RaisePropertyChanged("SellItemCommand");
             RaisePropertyChanged("BuyItemCommand");
         }

@@ -9,7 +9,7 @@ namespace NinjaManager.ViewModel
 {
     public class EquipmentViewModel : ViewModelBase
     {
-        private Equipment _equipment;
+        private NinjaManager.Equipment _equipment;
 
         public int Id
         {
@@ -72,7 +72,7 @@ namespace NinjaManager.ViewModel
             set { _equipment.Price = value; RaisePropertyChanged("Price"); } 
         }
 
-        public EquipmentViewModel(Equipment equipment)
+        public EquipmentViewModel(NinjaManager.Equipment equipment)
         {
             _equipment = equipment;
         }
