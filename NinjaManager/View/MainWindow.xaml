@@ -37,7 +37,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding ShowAddNinjaCommand}" Content="Add Ninja"  Height="45"></Button>
+        <Button Command="{Binding ShowManageNinjasCommand}" Content="Add Ninja"  Height="45"></Button>
     </StackPanel>
         <StackPanel Margin="20,0,0,0">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Equipment}" SelectedItem="{Binding SelectedEquipment}" Height="375">

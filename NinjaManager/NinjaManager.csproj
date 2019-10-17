@@ -110,14 +110,15 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Equipment\AddEquipmentViewModel.cs" />
-    <Compile Include="ViewModel\Ninja\AddNinjaViewModel.cs" />
+    <Compile Include="ViewModel\NinjaVMs\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\Equipment\EditEquipmentViewModel.cs" />
-    <Compile Include="ViewModel\Ninja\EditNinjaViewModel.cs" />
+    <Compile Include="ViewModel\NinjaVMs\EditNinjaViewModel.cs" />
     <Compile Include="ViewModel\Equipment\EquipmentCategoryViewModel.cs" />
     <Compile Include="ViewModel\Equipment\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\Ninja\NinjaOverviewViewModel.cs" />
-    <Compile Include="ViewModel\Ninja\NinjaViewModel.cs" />
+    <Compile Include="ViewModel\NinjaVMs\ManageNinjasViewModel.cs" />
+    <Compile Include="ViewModel\NinjaVMs\NinjaOverviewViewModel.cs" />
+    <Compile Include="ViewModel\NinjaVMs\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Equipment\AddEquipmentWindow.xaml.cs">
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="View\Ninja\EditNinjaWindow.xaml.cs">
       <DependentUpon>EditNinjaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ninja\ManageNinjasWindow.xaml.cs">
+      <DependentUpon>ManageNinjasWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Ninja\NinjaOverviewWindow.xaml.cs">
       <DependentUpon>NinjaOverviewWindow.xaml</DependentUpon>
@@ -166,6 +170,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Ninja\ManageNinjasWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Ninja\NinjaOverviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

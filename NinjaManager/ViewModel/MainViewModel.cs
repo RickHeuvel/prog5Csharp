@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using NinjaManager.View;
 using System.Collections.Generic;
+using NinjaManager.View.Ninja;
 
 namespace NinjaManager.ViewModel
 {
@@ -35,6 +36,8 @@ namespace NinjaManager.ViewModel
 
 
         //windows
+        private ManageNinjasWindow _manageNinjasWindow;
+
         private EditNinjaWindow _editNinjaWindow;
         private AddNinjaWindow _addNinjaWindow;
         private NinjaOverviewWindow _ninjaOverviewWindow;
@@ -42,6 +45,8 @@ namespace NinjaManager.ViewModel
         private EditEquipmentWindow _editEquipmentWindow;
 
         //commands 
+        public RelayCommand ShowManageNinjasCommand { get { return new RelayCommand(ShowManageNinjas); } }
+
         public ICommand ShowEditNinjaCommand { get; set; }
         public ICommand ShowAddNinjaCommand { get; set; }
         public ICommand ShowNinjaOverviewCommand { get; set; }
@@ -65,6 +70,12 @@ namespace NinjaManager.ViewModel
             ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
       //      DeleteEquipmentCommand = new RelayCommand<int>(DeleteEquipment, CanDeleteEquipment);
 
+        }
+
+        private void ShowManageNinjas()
+        {
+            _manageNinjasWindow = new ManageNinjasWindow();
+            _manageNinjasWindow.Show();
         }
 
         private void getAllNinjas()

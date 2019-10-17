@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.View;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ namespace NinjaManager.ViewModel
 {
     public class NinjaOverviewViewModel: ViewModelBase
     {
-        private MainViewModel _mainModel;
+        private ManageNinjasViewModel _manageNinjasModel;
 
         private NinjaViewModel _selectedNinja { get; set; }
         public NinjaViewModel SelectedNinja
@@ -48,12 +49,12 @@ namespace NinjaManager.ViewModel
         private ShopWindow _shopWindow;
 
 
-        public NinjaOverviewViewModel(MainViewModel main)
+        public NinjaOverviewViewModel(ManageNinjasViewModel manageNinjas)
         {
 
-            _mainModel = main;
+            _manageNinjasModel = manageNinjas;
 
-            SelectedNinja = _mainModel.SelectedNinja;
+            SelectedNinja = _manageNinjasModel.SelectedNinja;
            
 
             ShowShopCommand = new RelayCommand(ShowShop);

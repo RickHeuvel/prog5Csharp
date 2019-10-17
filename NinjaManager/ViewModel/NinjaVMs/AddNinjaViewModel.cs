@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace NinjaManager.ViewModel
 {
     public class AddNinjaViewModel: ViewModelBase
     {
-        private MainViewModel _mainModel;
+        private ManageNinjasViewModel _manageNinjas;
+
 
         private string _name;
         public string Name { get { return _name; } set { _name = value; RaisePropertyChanged("AddNinjaCommand"); } }
@@ -29,9 +31,9 @@ namespace NinjaManager.ViewModel
         public RelayCommand AddNinjaCommand { get { return new RelayCommand(AddNinja,CanAddNinja); }}
 
 
-        public AddNinjaViewModel(MainViewModel main)
+        public AddNinjaViewModel(ManageNinjasViewModel manageNinjas)
         {
-            _mainModel = main;
+            _manageNinjas = manageNinjas;
             Name = "";
         }
 
@@ -52,11 +54,11 @@ namespace NinjaManager.ViewModel
 
                 context.Ninjas.Add(n);
                 context.SaveChanges();
-                _mainModel.Ninjas.Add(n.ToPoCo());
+                _manageNinjas.Ninjas.Add(n.ToPoCo());
            
             }
 
-            _mainModel.CloseAddNinja();
+            _manageNinjas.CloseAddNinja();
         }
     }
 }
