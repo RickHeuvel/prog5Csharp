@@ -67,7 +67,6 @@ namespace NinjaManager.ViewModel
             set
             {
                 ObservableCollection<Equipment> collection = new ObservableCollection<Equipment>();
-       
                 value.ToList().ForEach(e => collection
                     .Add(new Equipment
                     {
