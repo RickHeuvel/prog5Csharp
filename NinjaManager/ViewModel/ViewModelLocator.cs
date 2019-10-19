@@ -109,7 +109,7 @@ namespace NinjaManager.ViewModel
         {
             get
             {
-                return new EditEquipmentViewModel(ManageEquipment);
+                return new EditEquipmentViewModel(ManageEquipment, ManageNinjas);
             }
         }
 

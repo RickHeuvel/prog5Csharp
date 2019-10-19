@@ -67,10 +67,11 @@ namespace NinjaManager.ViewModel
             set
             {
                 ObservableCollection<Equipment> collection = new ObservableCollection<Equipment>();
+       
                 value.ToList().ForEach(e => collection
-                    .Add(new Equipment 
-                    { 
-                        Id = e.Id, 
+                    .Add(new Equipment
+                    {
+                        Id = e.Id,
                         Name = e.Name,
                         Strength = e.Strength,
                         Intelligence = e.Intelligence,
@@ -79,10 +80,11 @@ namespace NinjaManager.ViewModel
                         Price = e.Price
                     }
                     ));
-
                 _ninja.Equipments = collection; RaisePropertyChanged("Equipments");
             }
         }
+
+
 
         public int GearValue 
         {

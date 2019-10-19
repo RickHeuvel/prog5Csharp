@@ -72,7 +72,7 @@ namespace NinjaManager.ViewModel
             set { _equipment.Price = value; RaisePropertyChanged("Price"); } 
         }
 
-        public EquipmentViewModel(NinjaManager.Equipment equipment)
+        public EquipmentViewModel(Equipment equipment)
         {
             _equipment = equipment;
         }

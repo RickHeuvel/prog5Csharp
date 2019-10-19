@@ -38,8 +38,8 @@
                 <StackPanel>
                     <TextBlock Text="{Binding SelectedEquipment.Name}"></TextBlock>
                     <TextBlock Text="{Binding SelectedEquipment.Strength}"></TextBlock>
-                    <TextBlock Text="{Binding SelectedEquipment.Agility}"></TextBlock>
                     <TextBlock Text="{Binding SelectedEquipment.Intelligence}"></TextBlock>
+                    <TextBlock Text="{Binding SelectedEquipment.Agility}"></TextBlock>
                     <TextBlock Text="{Binding SelectedEquipment.Price}"></TextBlock>
                 </StackPanel>
             </StackPanel>

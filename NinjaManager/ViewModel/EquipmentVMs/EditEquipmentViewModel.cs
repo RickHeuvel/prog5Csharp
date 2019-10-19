@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.ViewModel.EquipmentVMs;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace NinjaManager.ViewModel
     public class EditEquipmentViewModel : ViewModelBase
     {
         private ManageEquipmentViewModel _manageEquipment;
+        private ManageNinjasViewModel _manageNinjas;
 
         public List<EquipmentCategoryViewModel> Categories { get; set; }
         public EquipmentViewModel SelectedEquipment { get; set; }
@@ -34,9 +36,10 @@ namespace NinjaManager.ViewModel
 
         public RelayCommand EditEquipmentCommand { get { return new RelayCommand(EditEquipment, CanEditEquipment); } }
 
-        public EditEquipmentViewModel(ManageEquipmentViewModel manageEquipment)
+        public EditEquipmentViewModel(ManageEquipmentViewModel manageEquipment, ManageNinjasViewModel manageNinjas)
         {
             _manageEquipment = manageEquipment;
+            _manageNinjas = manageNinjas;
             SelectedEquipment = _manageEquipment.SelectedEquipment;
 
             GetCategories();
@@ -76,7 +79,6 @@ namespace NinjaManager.ViewModel
                     context.SaveChanges();
                 }
             }
-
             _manageEquipment.CloseEditEquipment();
         }
 

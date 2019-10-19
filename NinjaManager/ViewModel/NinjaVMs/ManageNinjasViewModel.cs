@@ -14,7 +14,15 @@ namespace NinjaManager.ViewModel.NinjaVMs
     public class ManageNinjasViewModel: ViewModelBase
     {
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
-        public NinjaViewModel SelectedNinja { get; set; }
+        //public NinjaViewModel SelectedNinja { get; set; }
+
+        private NinjaViewModel _selectedNinja;
+
+        public NinjaViewModel SelectedNinja
+        {
+            get { return _selectedNinja; }
+            set { _selectedNinja = value; RaisePropertyChanged(); }
+        }
 
 
         //windows
@@ -39,8 +47,6 @@ namespace NinjaManager.ViewModel.NinjaVMs
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
             ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
-
-            //      DeleteEquipmentCommand = new RelayCommand<int>(DeleteEquipment, CanDeleteEquipment);
 
         }
 
