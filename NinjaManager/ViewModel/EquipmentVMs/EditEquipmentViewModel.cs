@@ -26,24 +26,40 @@ namespace NinjaManager.ViewModel
     public class EditEquipmentViewModel : ViewModelBase
     {
         private ManageEquipmentViewModel _manageEquipment;
-        private ManageNinjasViewModel _manageNinjas;
 
         public List<EquipmentCategoryViewModel> Categories { get; set; }
         public EquipmentViewModel SelectedEquipment { get; set; }
 
         public EquipmentCategoryViewModel SelectedCategory { get; set; }
 
+        public string Name { get { return SelectedEquipment.Name; } set { SelectedEquipment.Name = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+
+        private string _strenght;
+        public string Strength { get { return _strenght; } set { _strenght = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+
+        private string _intelligence;
+        public string Intelligence { get { return _intelligence; } set { _intelligence = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+
+        private string _agility;
+        public string Agility { get { return _agility; } set { _agility = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+
+        private string _price;
+        public string Price { get { return _price; } set { _price = value; RaisePropertyChanged("EditEquipmentCommand"); } }
 
         public RelayCommand EditEquipmentCommand { get { return new RelayCommand(EditEquipment, CanEditEquipment); } }
 
-        public EditEquipmentViewModel(ManageEquipmentViewModel manageEquipment, ManageNinjasViewModel manageNinjas)
+        public EditEquipmentViewModel(ManageEquipmentViewModel manageEquipment)
         {
             _manageEquipment = manageEquipment;
-            _manageNinjas = manageNinjas;
             SelectedEquipment = _manageEquipment.SelectedEquipment;
 
             GetCategories();
 
+            Strength = SelectedEquipment.Strength.ToString();
+            Intelligence = SelectedEquipment.Intelligence.ToString();
+            Agility = SelectedEquipment.Agility.ToString();
+            Price = SelectedEquipment.Price.ToString();
+          
         }
 
         private void GetCategories()
@@ -84,6 +100,35 @@ namespace NinjaManager.ViewModel
 
         private bool CanEditEquipment()
         {
+            if (Name == null || Name.Length < 1 || Name.StartsWith(" "))
+            {
+                return false;
+            }
+            else if (!int.TryParse(Strength, out _))
+            {
+                return false;
+            }
+            else if (!int.TryParse(Intelligence, out _))
+            {
+                return false;
+            }
+            else if (!int.TryParse(Agility, out _))
+            {
+                return false;
+            }
+            else if (!int.TryParse(Price, out int result))
+            {
+                return false;
+            }
+            else if (result < 1)
+            {
+                return false;
+            }
+            SelectedEquipment.Name = Name;
+            SelectedEquipment.Strength = int.Parse(Strength);
+            SelectedEquipment.Intelligence = int.Parse(Intelligence);
+            SelectedEquipment.Agility = int.Parse(Agility);
+            SelectedEquipment.Price = int.Parse(Price);
             return true;
         }
     }
