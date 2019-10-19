@@ -23,10 +23,11 @@ namespace NinjaManager.ViewModel
             set { SelectedNinja.Name = value; RaisePropertyChanged("EditNinjaCommand"); }
         }
 
-        public int Gold 
+        private string _gold;
+        public string Gold 
         { 
-            get { return SelectedNinja.Gold; }
-            set { SelectedNinja.Gold = value; RaisePropertyChanged("EditNinjaCommand"); }
+            get { return _gold;}
+            set { _gold = value; RaisePropertyChanged("EditNinjaCommand"); }
         }
 
         //commands
@@ -36,13 +37,22 @@ namespace NinjaManager.ViewModel
         {
             _manageNinjasModel = manageNinjas;
             SelectedNinja = _manageNinjasModel.SelectedNinja;
+
+            Gold = SelectedNinja.Gold.ToString();
         }
 
         private bool CanEditNinja()
         {
-            if (Name.Length > 0 && !Name.StartsWith(" ") && Gold > 0)
+           
+
+            if (int.TryParse(Gold, out _))
             {
-                return true;
+                SelectedNinja.Gold = int.Parse(Gold);
+
+                if (Name.Length > 0 && !Name.StartsWith(" ") && SelectedNinja.Gold > 0)
+                {
+                    return true;
+                }
             }
             return false;
 
