@@ -18,9 +18,8 @@ namespace NinjaManager.ViewModel
         private string _name;
         public string Name { get { return _name; } set { _name = value; RaisePropertyChanged("AddNinjaCommand"); } }
 
-        private int _gold;
-
-        public int Gold
+        private string _gold;
+        public string Gold
         {
             get { return _gold; }
             set { _gold = value; RaisePropertyChanged("AddNinjaCommand"); }
@@ -39,9 +38,15 @@ namespace NinjaManager.ViewModel
 
         private bool CanAddNinja()
         {
-            if (Name.Length > 0 && !Name.StartsWith(" ") && Gold > 0)
+
+            if (int.TryParse(Gold, out _))
             {
-                return true;
+                int GoldInt = int.Parse(Gold);
+
+                if (Name.Length > 0 && !Name.StartsWith(" ") && GoldInt > 0)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -50,7 +55,7 @@ namespace NinjaManager.ViewModel
         {
             using (var context = new NinjaDBEntities())
             {
-                Ninja n = new Ninja { Name = Name, Gold = Gold };
+                Ninja n = new Ninja { Name = Name, Gold = int.Parse(Gold) };
 
                 context.Ninjas.Add(n);
                 context.SaveChanges();

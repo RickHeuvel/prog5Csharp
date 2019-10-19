@@ -43,8 +43,6 @@ namespace NinjaManager.ViewModel
 
         private bool CanEditNinja()
         {
-           
-
             if (int.TryParse(Gold, out _))
             {
                 SelectedNinja.Gold = int.Parse(Gold);
