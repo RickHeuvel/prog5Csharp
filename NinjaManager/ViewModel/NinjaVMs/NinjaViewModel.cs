@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -52,17 +53,14 @@ namespace NinjaManager.ViewModel
         }
 
 
+        private ObservableCollection<EquipmentViewModel> _equipment;
+
         public ObservableCollection<EquipmentViewModel> Equipments
         {
 
             get
             {
-                ObservableCollection<EquipmentViewModel> collection = new ObservableCollection<EquipmentViewModel>();
-                using (var context = new NinjaDBEntities())
-                {
-                    context.Ninjas.Single(n => n.Id == _ninja.Id).Equipments.ToList().ForEach(e => collection.Add(e.ToPoCo()));
-                    return collection;
-                };
+                return _equipment;
             }
             set
             {
@@ -83,7 +81,37 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (EquipmentViewModel newEquipment in e.NewItems)
+                {
+                    _ninja.Equipments.Add(new Equipment
+                    {
+                        Id = newEquipment.Id,
+                        Name = newEquipment.Name,
+                        Strength = newEquipment.Strength,
+                        Intelligence = newEquipment.Intelligence,
+                        Agility = newEquipment.Agility,
+                        CategoryId = newEquipment.CategoryId,
+                        Price = newEquipment.Price
+                    });
+                }
+                Equipments = _ninja.EquipmentsToPoCo();
 
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (EquipmentViewModel equipment in e.OldItems)
+                {
+                    Equipment toRemove = _ninja.Equipments.Single(eq => eq.Id == equipment.Id);
+                    _ninja.Equipments.Remove(toRemove);
+                    Equipments = _ninja.EquipmentsToPoCo();
+                }
+            }
+        }
 
         public int GearValue 
         {
@@ -106,6 +134,8 @@ namespace NinjaManager.ViewModel
         public NinjaViewModel(Ninja ninja)
         {
             _ninja = ninja;
+            _equipment = _ninja.EquipmentsToPoCo();
+    //        Equipments.CollectionChanged += OnCollectionChanged;
         }
 
     }
