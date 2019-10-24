@@ -71,6 +71,7 @@ namespace NinjaManager.ViewModel.EquipmentVMs
         // check if any ninja has the equipment i want to delete if so return false
         private bool CanDeleteEquipment(int id)
         {
+            return true;
             using (var context = new NinjaDBEntities())
             {
                 var equipment = context.Equipments.ToList().Find(e => e.Id == id);
@@ -91,6 +92,7 @@ namespace NinjaManager.ViewModel.EquipmentVMs
             using (var context = new NinjaDBEntities())
             {
                 var equipment = context.Equipments.ToList().Find(e => e.Id == id);
+                equipment.Ninjas.ToList().ForEach(n => n.Equipments.Remove(equipment));
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
 
