@@ -11,6 +11,7 @@ namespace NinjaManager
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using NinjaManager.ViewModel;
 
     public partial class Ninja
@@ -35,5 +36,17 @@ namespace NinjaManager
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipments { get; set; }
+
+        internal ObservableCollection<EquipmentViewModel> EquipmentsToPoCo()
+        {
+            ObservableCollection<EquipmentViewModel> col = new ObservableCollection<EquipmentViewModel>();
+
+            foreach (Equipment equipment in Equipments)
+            {
+                col.Add(equipment.ToPoCo());
+            }
+
+            return col;
+        }
     }
 }

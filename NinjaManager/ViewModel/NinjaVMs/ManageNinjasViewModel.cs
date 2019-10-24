@@ -55,7 +55,7 @@ namespace NinjaManager.ViewModel.NinjaVMs
         {
             using (var context = new NinjaDBEntities())
             {
-                context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
+                context.Ninjas.Include("Equipments").ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
             }
         }
 
