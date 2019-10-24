@@ -81,7 +81,7 @@ namespace NinjaManager.ViewModel
 
         private bool CanAddEquipment()
         {
-            if (Name == null || Name.Length < 0 || Name.StartsWith(" "))
+            if (Name == null || Name.Length < 1 || Name.StartsWith(" "))
             {
                 return false;
             }
