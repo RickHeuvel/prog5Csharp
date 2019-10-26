@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.View;
+using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,7 @@ namespace NinjaManager.ViewModel.EquipmentVMs
 {
     public class ManageEquipmentViewModel: ViewModelBase
     {
+        public ManageNinjasViewModel _manageNinjas;
         public ObservableCollection<EquipmentViewModel> Equipment { get; set; }
 
         private EquipmentViewModel _selectedEquipment;
@@ -38,8 +40,10 @@ namespace NinjaManager.ViewModel.EquipmentVMs
         public RelayCommand<int> DeleteEquipmentCommand { get { return new RelayCommand<int>(DeleteEquipment, CanDeleteEquipment); } }
         public ICommand ShowEditEquipmentCommand { get; set; }
        
-        public ManageEquipmentViewModel()
+        public ManageEquipmentViewModel(ManageNinjasViewModel manageNinjasVM)
         {
+            _manageNinjas = manageNinjasVM;
+
             Equipment = new ObservableCollection<EquipmentViewModel>();
             GetAllEquipment();
 
@@ -91,12 +95,18 @@ namespace NinjaManager.ViewModel.EquipmentVMs
         {
             using (var context = new NinjaDBEntities())
             {
+                //remove equipment from equipmentlist
                 var equipment = context.Equipments.ToList().Find(e => e.Id == id);
                 equipment.Ninjas.ToList().ForEach(n => n.Equipments.Remove(equipment));
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
-
                 Equipment.Remove(Equipment.ToList().Find(e => e.Id == equipment.Id));
+
+                //remove equipment from ninjas
+                _manageNinjas.Ninjas.ToList()
+                    .ForEach(n => n.Equipments
+                    .Remove(n.Equipments.ToList()
+                    .Find(e => e.Id == equipment.Id)));
             }
         }
         private void ShowEditEquipment()

@@ -146,23 +146,9 @@ namespace NinjaManager.ViewModel
             //_equipments = _ninja.EquipmentsToPoCo();
             //_equipments.CollectionChanged += OnCollectionChanged;
 
-
             _equipments = new ObservableCollection<EquipmentViewModel>();
             _ninja.Equipments.ToList().ForEach(e => _equipments.Add(e.ToPoCo()));
        //     _equipments.CollectionChanged += OnCollectionChanged;
-
-
-
-        }
-
-        private void TEST()
-        {
-            _equipments = new ObservableCollection<EquipmentViewModel>();
-        //    _equipments.CollectionChanged += OnCollectionChanged;
-
-
-            
-           // _ninja.Equipments.ToList().ForEach(e => _equipments.Add(e.ToPoCo()));
         }
     }
 }

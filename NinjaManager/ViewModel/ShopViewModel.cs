@@ -65,7 +65,6 @@ namespace NinjaManager.ViewModel
             SellAllCommand = new RelayCommand(SellAll);
 
             SelectedCategory = "Head";
-            SelectedEquipment = SelectedEquipmentList.First();
 
         }
 
