@@ -60,7 +60,7 @@ namespace NinjaManager.ViewModel
 
             get
             {
-                return _equipment;
+              return _equipment;
             }
             set
             {
@@ -77,41 +77,43 @@ namespace NinjaManager.ViewModel
                         Price = e.Price
                     }
                     ));
-                _ninja.Equipments = collection; RaisePropertyChanged("Equipments");
-            }
-        }
-
-        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (EquipmentViewModel newEquipment in e.NewItems)
-                {
-                    _ninja.Equipments.Add(new Equipment
-                    {
-                        Id = newEquipment.Id,
-                        Name = newEquipment.Name,
-                        Strength = newEquipment.Strength,
-                        Intelligence = newEquipment.Intelligence,
-                        Agility = newEquipment.Agility,
-                        CategoryId = newEquipment.CategoryId,
-                        Price = newEquipment.Price
-                    });
-                }
+                _ninja.Equipments = collection;
                 Equipments = _ninja.EquipmentsToPoCo();
-
-            }
-
-            if (e.OldItems != null)
-            {
-                foreach (EquipmentViewModel equipment in e.OldItems)
-                {
-                    Equipment toRemove = _ninja.Equipments.Single(eq => eq.Id == equipment.Id);
-                    _ninja.Equipments.Remove(toRemove);
-                    Equipments = _ninja.EquipmentsToPoCo();
-                }
+                RaisePropertyChanged("Equipments");
             }
         }
+
+        //void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    if (e.NewItems != null)
+        //    {
+        //        foreach (EquipmentViewModel newEquipment in e.NewItems)
+        //        {
+        //            _ninja.Equipments.Add(new Equipment
+        //            {
+        //                Id = newEquipment.Id,
+        //                Name = newEquipment.Name,
+        //                Strength = newEquipment.Strength,
+        //                Intelligence = newEquipment.Intelligence,
+        //                Agility = newEquipment.Agility,
+        //                CategoryId = newEquipment.CategoryId,
+        //                Price = newEquipment.Price
+        //            });
+        //        }
+                
+                
+        //    }
+
+        //    if (e.OldItems != null)
+        //    {
+        //        foreach (EquipmentViewModel equipment in e.OldItems)
+        //        {
+        //            Equipment toRemove = _ninja.Equipments.Single(eq => eq.Id == equipment.Id);
+        //            _ninja.Equipments.Remove(toRemove);
+        //        }
+        //    }
+            
+        //}
 
         public int GearValue 
         {
@@ -135,8 +137,7 @@ namespace NinjaManager.ViewModel
         {
             _ninja = ninja;
             _equipment = _ninja.EquipmentsToPoCo();
-    //        Equipments.CollectionChanged += OnCollectionChanged;
+          //  Equipments.CollectionChanged += OnCollectionChanged;
         }
-
     }
 }

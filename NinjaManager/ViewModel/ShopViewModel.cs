@@ -179,7 +179,7 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.Intelligence = 0;
                     SelectedNinja.Strenght = 0;
                     SelectedNinja.Agility = 0;
-                    SelectedNinja.Equipments.Clear();
+                    SelectedNinja.Equipments.ToList().ForEach(e => SelectedNinja.Equipments.Remove(e));
                 }
             }
         }
