@@ -18,7 +18,7 @@
             <Button Content="Boots" Command="{Binding BtnSelectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Width="150" Height="50" Margin="10"></Button>
         </StackPanel>
         <StackPanel Width="300">
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedEquipmentList}" SelectedItem="{Binding SelectedEquipment}">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedEquipmentList}" SelectedItem="{Binding SelectedEquipment , Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>

@@ -41,18 +41,18 @@ namespace NinjaManager.ViewModel.EquipmentVMs
         public ManageEquipmentViewModel()
         {
             Equipment = new ObservableCollection<EquipmentViewModel>();
-            getAllEquipment();
+            GetAllEquipment();
 
             ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment);
             ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
 
         }
 
-        private void getAllEquipment()
+        private void GetAllEquipment()
         {
             using (var context = new NinjaDBEntities())
             {
-                context.Equipments.ToList().ForEach(e => Equipment.Add(new EquipmentViewModel(e)));
+                context.Equipments.Include("EquipmentCategory").ToList().ForEach(e => Equipment.Add(new EquipmentViewModel(e)));
             }
         }
 

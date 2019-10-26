@@ -12,6 +12,7 @@ namespace NinjaManager
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using NinjaManager.ViewModel;
 
     public partial class Ninja
@@ -41,10 +42,7 @@ namespace NinjaManager
         {
             ObservableCollection<EquipmentViewModel> col = new ObservableCollection<EquipmentViewModel>();
 
-            foreach (Equipment equipment in Equipments)
-            {
-                col.Add(equipment.ToPoCo());
-            }
+            Equipments.ToList().ForEach(e => col.Add(e.ToPoCo()));
 
             return col;
         }

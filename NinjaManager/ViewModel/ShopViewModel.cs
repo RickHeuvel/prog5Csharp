@@ -133,7 +133,8 @@ namespace NinjaManager.ViewModel
                     ninja.Gold += equipment.Price;
                     context.SaveChanges();
 
-                    SelectedNinja.Equipments.Remove(SelectedEquipment);
+                    var tempEquipment = SelectedNinja.Equipments.First(e => e.Id == SelectedEquipment.Id);
+                    SelectedNinja.Equipments.Remove(tempEquipment);
                     SelectedNinja.Strenght -= SelectedEquipment.Strength;
                     SelectedNinja.Intelligence -= SelectedEquipment.Intelligence;
                     SelectedNinja.Agility -= SelectedEquipment.Agility;
