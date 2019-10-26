@@ -53,67 +53,74 @@ namespace NinjaManager.ViewModel
         }
 
 
-        private ObservableCollection<EquipmentViewModel> _equipment;
+        private ICollection<EquipmentViewModel> _equipments;
 
-        public ObservableCollection<EquipmentViewModel> Equipments
+        public ICollection<EquipmentViewModel> Equipments
         {
 
             get
-            {
-              return _equipment;
+            { 
+              return _equipments;
             }
             set
             {
-                ObservableCollection<Equipment> collection = new ObservableCollection<Equipment>();
-                value.ToList().ForEach(e => collection
-                    .Add(new Equipment
-                    {
-                        Id = e.Id,
-                        Name = e.Name,
-                        Strength = e.Strength,
-                        Intelligence = e.Intelligence,
-                        Agility = e.Agility,
-                        CategoryId = e.CategoryId,
-                        Price = e.Price
-                    }
-                    ));
-                _ninja.Equipments = collection;
-                Equipments = _ninja.EquipmentsToPoCo();
+                //ObservableCollection<Equipment> collection = new ObservableCollection<Equipment>();
+                //value.ToList().ForEach(e => collection
+                //    .Add(new Equipment
+                //    {
+                //        Id = e.Id,
+                //        Name = e.Name,
+                //        Strength = e.Strength,
+                //        Intelligence = e.Intelligence,
+                //        Agility = e.Agility,
+                //        CategoryId = e.CategoryId,
+                //        Price = e.Price
+                //    }
+                //    ));
+                //_ninja.Equipments = collection;
+                //Equipments = _ninja.EquipmentsToPoCo();
+
+                //_ninja.Equipments = value;
+         
                 RaisePropertyChanged("Equipments");
             }
         }
 
-        //void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    if (e.NewItems != null)
-        //    {
-        //        foreach (EquipmentViewModel newEquipment in e.NewItems)
-        //        {
-        //            _ninja.Equipments.Add(new Equipment
-        //            {
-        //                Id = newEquipment.Id,
-        //                Name = newEquipment.Name,
-        //                Strength = newEquipment.Strength,
-        //                Intelligence = newEquipment.Intelligence,
-        //                Agility = newEquipment.Agility,
-        //                CategoryId = newEquipment.CategoryId,
-        //                Price = newEquipment.Price
-        //            });
-        //        }
-                
-                
-        //    }
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //if (e.NewItems != null)
+            //{
+            //    foreach (EquipmentViewModel newEquipment in e.NewItems)
+            //    {
+            //        //_ninja.Equipments.Add(new Equipment
+            //        //{
+            //        //    Id = newEquipment.Id,
+            //        //    Name = newEquipment.Name,
+            //        //    Strength = newEquipment.Strength,
+            //        //    Intelligence = newEquipment.Intelligence,
+            //        //    Agility = newEquipment.Agility,
+            //        //    CategoryId = newEquipment.CategoryId,
+            //        //    Price = newEquipment.Price
+            //        //});
+            //        Equipments = _ninja.EquipmentsToPoCo();
+            //      //  Equipments.Add(newEquipment);
+            //    }
+            //}
 
-        //    if (e.OldItems != null)
-        //    {
-        //        foreach (EquipmentViewModel equipment in e.OldItems)
-        //        {
-        //            Equipment toRemove = _ninja.Equipments.Single(eq => eq.Id == equipment.Id);
-        //            _ninja.Equipments.Remove(toRemove);
-        //        }
-        //    }
-            
-        //}
+            //if (e.OldItems != null)
+            //{
+            //    foreach (EquipmentViewModel equipment in e.OldItems)
+            //    {
+            //        //Equipment toRemove = _ninja.Equipments.Single(eq => eq.Id == equipment.Id);
+            //        //_ninja.Equipments.Remove(toRemove);
+
+            //        Equipments.Remove(equipment);
+            //    }
+            //}
+
+            Equipments = _ninja.EquipmentsToPoCo();
+          
+        }
 
         public int GearValue 
         {
@@ -136,8 +143,26 @@ namespace NinjaManager.ViewModel
         public NinjaViewModel(Ninja ninja)
         {
             _ninja = ninja;
-            _equipment = _ninja.EquipmentsToPoCo();
-          //  Equipments.CollectionChanged += OnCollectionChanged;
+            //_equipments = _ninja.EquipmentsToPoCo();
+            //_equipments.CollectionChanged += OnCollectionChanged;
+
+
+            _equipments = new ObservableCollection<EquipmentViewModel>();
+            _ninja.Equipments.ToList().ForEach(e => _equipments.Add(e.ToPoCo()));
+       //     _equipments.CollectionChanged += OnCollectionChanged;
+
+
+
+        }
+
+        private void TEST()
+        {
+            _equipments = new ObservableCollection<EquipmentViewModel>();
+        //    _equipments.CollectionChanged += OnCollectionChanged;
+
+
+            
+           // _ninja.Equipments.ToList().ForEach(e => _equipments.Add(e.ToPoCo()));
         }
     }
 }

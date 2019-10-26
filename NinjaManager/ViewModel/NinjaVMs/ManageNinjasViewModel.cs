@@ -41,8 +41,6 @@ namespace NinjaManager.ViewModel.NinjaVMs
             Ninjas = new ObservableCollection<NinjaViewModel>();
             GetAllNinjas();
 
-         
-
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja);
             ShowNinjaOverviewCommand = new RelayCommand(ShowNinjaOverview);
