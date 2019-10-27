@@ -92,13 +92,13 @@ namespace NinjaManager.ViewModel
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetEquipmentTypes();
-
         }
 
 
         //check categorie and fill correct object 
         private void SetEquipmentTypes()
         {
+            //clear all equipment
             HeadEquipment = null;
             ShoulderEquipment = null;
             ChestEquipment = null;
@@ -106,6 +106,8 @@ namespace NinjaManager.ViewModel
             LegsEquipment = null;
             BootsEquipment = null;
 
+
+            //fill equipment
             foreach (var item in SelectedNinja.Equipments)
             {
                 switch (item.Category.Name)
