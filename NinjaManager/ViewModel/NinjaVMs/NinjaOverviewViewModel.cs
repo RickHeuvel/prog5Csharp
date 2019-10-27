@@ -32,18 +32,40 @@ namespace NinjaManager.ViewModel
             get { return _headEquipment; }
             set { _headEquipment = value; RaisePropertyChanged(); }
         }
+        public EquipmentViewModel _shoulderEquipment;
+        public EquipmentViewModel ShoulderEquipment
+        {
+            get { return _shoulderEquipment; }
+            set { _shoulderEquipment = value; RaisePropertyChanged(); }
+        }
 
-      //  public EquipmentViewModel HeadEquipment { get; set; }
+        public EquipmentViewModel _chestEquipment;
+        public EquipmentViewModel ChestEquipment
+        {
+            get { return _chestEquipment; }
+            set { _chestEquipment = value; RaisePropertyChanged(); }
+        }
 
-        public EquipmentViewModel ShoulderEquipment { get; set; }
+        public EquipmentViewModel _beltEquipment;
+        public EquipmentViewModel BeltEquipment 
+        {
+            get { return _beltEquipment; }
+            set { _beltEquipment = value; RaisePropertyChanged(); }
+        }
 
-        public EquipmentViewModel ChestEquipment { get; set; }
+        public EquipmentViewModel _legsEquipment;
+        public EquipmentViewModel LegsEquipment
+        {
+            get { return _legsEquipment; }
+            set { _legsEquipment = value; RaisePropertyChanged(); }
+        }
 
-        public EquipmentViewModel BeltEquipment { get; set; }
-
-        public EquipmentViewModel LegsEquipment { get; set; }
-
-        public EquipmentViewModel BootsEquipment { get; set; }
+        public EquipmentViewModel _bootsEquipment;
+        public EquipmentViewModel BootsEquipment
+        {
+            get { return _bootsEquipment; }
+            set { _bootsEquipment = value; RaisePropertyChanged(); }
+        }
 
         public ObservableCollection<EquipmentViewModel> NinjaEquipments { get; set; }
 
@@ -60,24 +82,30 @@ namespace NinjaManager.ViewModel
             SelectedNinja = _manageNinjasModel.SelectedNinja;
 
             NinjaEquipments = SelectedNinja.Equipments;
-          //  NinjaEquipments.CollectionChanged += OnCollectionChanged;
+            NinjaEquipments.CollectionChanged += OnCollectionChanged;
            
 
             ShowShopCommand = new RelayCommand(ShowShop);
          
         }
 
-        //void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    SetEquipmentTypes();
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            SetEquipmentTypes();
 
-        //}
+        }
 
 
         //check categorie and fill correct object 
         private void SetEquipmentTypes()
         {
-            
+            HeadEquipment = null;
+            ShoulderEquipment = null;
+            ChestEquipment = null;
+            BeltEquipment = null;
+            LegsEquipment = null;
+            BootsEquipment = null;
+
             foreach (var item in SelectedNinja.Equipments)
             {
                 switch (item.Category.Name)
