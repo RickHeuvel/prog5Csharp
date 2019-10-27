@@ -53,9 +53,9 @@ namespace NinjaManager.ViewModel
         }
 
 
-        private ICollection<EquipmentViewModel> _equipments;
+        private ObservableCollection<EquipmentViewModel> _equipments;
 
-        public ICollection<EquipmentViewModel> Equipments
+        public ObservableCollection<EquipmentViewModel> Equipments
         {
 
             get
