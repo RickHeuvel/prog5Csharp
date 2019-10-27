@@ -70,6 +70,8 @@ namespace NinjaManager.ViewModel
         public ObservableCollection<EquipmentViewModel> NinjaEquipments { get; set; }
 
         public ICommand ShowShopCommand { get; set; }
+        public RelayCommand CloseCommand { get { return new RelayCommand(CloseShop); } }
+
 
         private ShopWindow _shopWindow;
 
@@ -140,6 +142,11 @@ namespace NinjaManager.ViewModel
         {
             _shopWindow = new ShopWindow();
             _shopWindow.Show();
+        }
+
+        private void CloseShop()
+        {
+            _shopWindow.Close();
         }
     }
 }
