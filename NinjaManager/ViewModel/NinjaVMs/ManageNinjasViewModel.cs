@@ -80,6 +80,11 @@ namespace NinjaManager.ViewModel.NinjaVMs
   
         private void DeleteNinja()
         {
+            if (_ninjaOverviewWindow.Title == SelectedNinja.Name)
+            {
+                _ninjaOverviewWindow.Close();
+            }
+
             using (var context = new NinjaDBEntities())
             {
                 var ninja = context.Ninjas.ToList().Find(n => n.Id == SelectedNinja.Id);
@@ -90,6 +95,9 @@ namespace NinjaManager.ViewModel.NinjaVMs
                 Ninjas.Remove(Ninjas.ToList().Find(n => n.Id == ninja.Id));
             }
 
+          
+         
+          
         }
      
         private void ShowNinjaOverview()
