@@ -182,6 +182,8 @@ namespace NinjaManager.ViewModel
                     SelectedNinja.Equipments.ToList().ForEach(e => SelectedNinja.Equipments.Remove(e));
                 }
             }
+            RaisePropertyChanged("SellItemCommand");
+            RaisePropertyChanged("BuyItemCommand");
         }
 
         private void BtnSelectClick(string cat)

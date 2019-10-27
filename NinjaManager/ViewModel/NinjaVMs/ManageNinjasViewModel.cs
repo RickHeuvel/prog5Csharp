@@ -14,7 +14,6 @@ namespace NinjaManager.ViewModel.NinjaVMs
     public class ManageNinjasViewModel: ViewModelBase
     {
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
-        //public NinjaViewModel SelectedNinja { get; set; }
 
         private NinjaViewModel _selectedNinja;
 
@@ -53,7 +52,7 @@ namespace NinjaManager.ViewModel.NinjaVMs
         {
             using (var context = new NinjaDBEntities())
             {
-                context.Ninjas.Include("Equipments").ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
+                context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n)));
             }
         }
 

@@ -20,22 +20,46 @@ namespace NinjaManager.ViewModel
         public List<EquipmentCategoryViewModel> Categories { get; set; }
 
         private string _name;
-        public string Name { get { return _name; } set { _name = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; RaisePropertyChanged("AddEquipmentCommand"); }
+        }
 
         private string _strenght;
-        public string Strength { get { return _strenght; } set { _strenght = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public string Strength 
+        { 
+            get { return _strenght; }
+            set { _strenght = value; RaisePropertyChanged("AddEquipmentCommand"); } 
+        }
 
         private string _intelligence;
-        public string Intelligence { get { return _intelligence; } set { _intelligence = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public string Intelligence 
+        { 
+            get { return _intelligence; } 
+            set { _intelligence = value; RaisePropertyChanged("AddEquipmentCommand"); } 
+        }
 
         private string _agility;
-        public string Agility { get { return _agility; } set { _agility = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public string Agility 
+        { 
+            get { return _agility; } 
+            set { _agility = value; RaisePropertyChanged("AddEquipmentCommand"); }
+        }
 
         private string _price;
-        public string Price { get { return _price; } set { _price = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public string Price
+        {
+            get { return _price; } 
+            set { _price = value; RaisePropertyChanged("AddEquipmentCommand"); } 
+        }
 
         private EquipmentCategoryViewModel _selectedCategory;
-        public EquipmentCategoryViewModel SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; RaisePropertyChanged("AddEquipmentCommand"); } }
+        public EquipmentCategoryViewModel SelectedCategory
+        { 
+            get { return _selectedCategory; } 
+            set { _selectedCategory = value; RaisePropertyChanged("AddEquipmentCommand"); } 
+        }
 
         public RelayCommand AddEquipmentCommand { get { return new RelayCommand(AddEquipment, CanAddEquipment); } }
 
@@ -85,7 +109,7 @@ namespace NinjaManager.ViewModel
             {
                 return false;
             }
-            else if ( ! int.TryParse(Strength, out _))
+            else if (!int.TryParse(Strength, out _))
             {
                 return false;
             }

@@ -32,19 +32,38 @@ namespace NinjaManager.ViewModel
 
         public EquipmentCategoryViewModel SelectedCategory { get; set; }
 
-        public string Name { get { return SelectedEquipment.Name; } set { SelectedEquipment.Name = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+        public string Name 
+        {
+            get { return SelectedEquipment.Name; }
+            set { SelectedEquipment.Name = value; RaisePropertyChanged("EditEquipmentCommand"); } 
+        }
 
         private string _strenght;
-        public string Strength { get { return _strenght; } set { _strenght = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+        public string Strength 
+        { 
+            get { return _strenght; }
+            set { _strenght = value; RaisePropertyChanged("EditEquipmentCommand"); }
+        }
 
         private string _intelligence;
-        public string Intelligence { get { return _intelligence; } set { _intelligence = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+        public string Intelligence 
+        { get { return _intelligence; }
+            set { _intelligence = value; RaisePropertyChanged("EditEquipmentCommand"); }
+        }
 
         private string _agility;
-        public string Agility { get { return _agility; } set { _agility = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+        public string Agility
+        { 
+            get { return _agility; } 
+            set { _agility = value; RaisePropertyChanged("EditEquipmentCommand"); }
+        }
 
         private string _price;
-        public string Price { get { return _price; } set { _price = value; RaisePropertyChanged("EditEquipmentCommand"); } }
+        public string Price
+        { 
+            get { return _price; } 
+            set { _price = value; RaisePropertyChanged("EditEquipmentCommand"); } 
+        }
 
         public RelayCommand EditEquipmentCommand { get { return new RelayCommand(EditEquipment, CanEditEquipment); } }
 
