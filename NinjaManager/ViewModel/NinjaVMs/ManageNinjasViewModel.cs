@@ -80,6 +80,7 @@ namespace NinjaManager.ViewModel.NinjaVMs
   
         private void DeleteNinja()
         {
+            // close ninjaoverview window for deleted ninja
             if (_ninjaOverviewWindow.Title == SelectedNinja.Name)
             {
                 _ninjaOverviewWindow.Close();
@@ -94,10 +95,6 @@ namespace NinjaManager.ViewModel.NinjaVMs
 
                 Ninjas.Remove(Ninjas.ToList().Find(n => n.Id == ninja.Id));
             }
-
-          
-         
-          
         }
      
         private void ShowNinjaOverview()

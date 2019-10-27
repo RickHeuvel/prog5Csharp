@@ -5,6 +5,7 @@ using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,31 +60,15 @@ namespace NinjaManager.ViewModel
 
             SelectedNinja = _manageNinjas.SelectedNinja;
             SelectedEquipmentList = new ObservableCollection<EquipmentViewModel>();
+         
             Equipment = _manageEquipment.Equipment;
+            Equipment.CollectionChanged += CollectionChanged;
 
             BtnSelectCommand = new RelayCommand<string>(BtnSelectClick);
             SellAllCommand = new RelayCommand(SellAll);
 
             SelectedCategory = "Head";
 
-        }
-
-        public bool CanBuyItem()
-        {
-
-            if (SelectedEquipment != null)
-            {
-                var matchingEquipment = SelectedNinja.Equipments.ToList().Find(e => e.CategoryId == SelectedEquipment.CategoryId);
-                if (SelectedNinja.Gold >= SelectedEquipment.Price && matchingEquipment == null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return false;
         }
 
         private void BuyItem()
@@ -144,21 +129,7 @@ namespace NinjaManager.ViewModel
             RaisePropertyChanged("SellItemCommand");
             RaisePropertyChanged("BuyItemCommand");
         }
-        private bool CanSellItem()
-        {
-            if (SelectedEquipment != null)
-            {
-
-                EquipmentViewModel temp = SelectedNinja.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
-
-                if (temp != null)
-                {
-                    return true;
-                }
-            }
-            return false;
-
-        }
+     
         private void SellAll()
         {
             using (var context = new NinjaDBEntities())
@@ -186,6 +157,45 @@ namespace NinjaManager.ViewModel
             RaisePropertyChanged("BuyItemCommand");
         }
 
+        public bool CanBuyItem()
+        {
+
+            if (SelectedEquipment != null)
+            {
+                var matchingEquipment = SelectedNinja.Equipments.ToList().Find(e => e.CategoryId == SelectedEquipment.CategoryId);
+                if (SelectedNinja.Gold >= SelectedEquipment.Price && matchingEquipment == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private bool CanSellItem()
+        {
+            if (SelectedEquipment != null)
+            {
+
+                EquipmentViewModel temp = SelectedNinja.Equipments.ToList().Find(e => e.Id == SelectedEquipment.Id);
+
+                if (temp != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        // gets called when Equipments changes to clear deleted and add new equipments 
+        private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            ShowSelectedCategory(SelectedCategory);
+        }
         private void BtnSelectClick(string cat)
         {
             SelectedCategory = cat;
