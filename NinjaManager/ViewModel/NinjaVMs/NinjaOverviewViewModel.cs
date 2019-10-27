@@ -5,6 +5,7 @@ using NinjaManager.ViewModel.NinjaVMs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,8 @@ namespace NinjaManager.ViewModel
 
         public EquipmentViewModel BootsEquipment { get; set; }
 
+        public ObservableCollection<EquipmentViewModel> NinjaEquipments { get; set; }
+
         public ICommand ShowShopCommand { get; set; }
 
         private ShopWindow _shopWindow;
@@ -55,11 +58,21 @@ namespace NinjaManager.ViewModel
             _manageNinjasModel = manageNinjas;
 
             SelectedNinja = _manageNinjasModel.SelectedNinja;
+
+            NinjaEquipments = SelectedNinja.Equipments;
+          //  NinjaEquipments.CollectionChanged += OnCollectionChanged;
            
 
             ShowShopCommand = new RelayCommand(ShowShop);
          
         }
+
+        //void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    SetEquipmentTypes();
+
+        //}
+
 
         //check categorie and fill correct object 
         private void SetEquipmentTypes()
