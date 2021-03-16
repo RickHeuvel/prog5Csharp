@@ -146,7 +146,10 @@ namespace NinjaManager.ViewModel
 
         private void CloseShop()
         {
-            _shopWindow.Close();
+            if (_shopWindow != null)
+            {
+                _shopWindow.Close();
+            }
         }
     }
 }
